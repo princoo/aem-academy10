@@ -1,0 +1,23 @@
+<sly
+  data-sly-use.model="com.adobe.aem.guides.wknd.core.models.ProductCard"
+  data-sly-use.legacyModel="com.adobe.aem.guides.wknd.core.models.WCMUsePojoSample"
+  data-sly-use.academyModel="${'com.adobe.aem.guides.wknd.core.models.AcademyLearningDemo' @ adaptable=currentPage.contentResource}"
+>
+  <div class="cmp-product-card">
+    <sly data-sly-test="${model.imagePath}">
+      <img
+        class="cmp-product-card__image"
+        src="${model.imagePath}"
+        alt="${model.uppercaseTitle}"
+      />
+    </sly>
+
+    <div class="cmp-product-card__content">
+      <h3 class="cmp-product-card__title">${academyModel.title}</h3>
+      <p class="cmp-product-card__description">
+        ${academyModel.customDescription}
+      </p>
+      <p class="cmp-product-card__price">${model.searchQuery}</p>
+    </div>
+  </div>
+</sly>

@@ -1,0 +1,116 @@
+/* The Grid Layout */
+/* The Grid Layout - Forced to 4 Columns */
+.custom-card-grid {
+    display: grid;
+    /* This is the magic line: 4 columns, equal width */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 24px;
+    padding: 20px;
+}
+
+/* The Card Container */
+.custom-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+}
+
+/* Hover Effect */
+.custom-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+}
+
+/* Content Area (Pushes the footer to the bottom) */
+.card-content {
+    padding: 20px;
+    flex-grow: 1; /* This is the magic flexbox trick! */
+}
+
+.card-title {
+    margin: 0 0 10px 0;
+    font-size: 1.25rem;
+    color: #333333;
+}
+
+.card-date {
+    font-size: 0.85rem;
+    color: #888888;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card-description {
+    font-size: 1rem;
+    color: #555555;
+    line-height: 1.5;
+}
+
+/* Footer & Button Area */
+.card-footer {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #eeeeee;
+}
+
+.card-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0054db;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.card-button:hover {
+    background-color: #003ea8;
+}
+
+.cmp-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 30px 0;
+}
+
+.pagination-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 5px;
+}
+
+.pagination-item, .pagination-number a {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.2s;
+}
+
+.pagination-number.is-active a {
+    background-color: #0054db;
+    color: white;
+    border-color: #0054db;
+}
+
+.pagination-item:hover:not(.is-disabled) {
+    background-color: #f0f0f0;
+}
+
+.pagination-item.is-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    background-color: #eee;
+}

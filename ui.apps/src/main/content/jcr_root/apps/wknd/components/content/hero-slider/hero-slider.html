@@ -1,0 +1,70 @@
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+<sly data-sly-use.model="com.adobe.aem.guides.wknd.core.models.HeroSlider">
+  <div class="swiper" data-sly-test="${model.slides}">
+    <div class="swiper-wrapper" data-sly-list.slide="${model.slides}">
+      <!-- slides -->
+      <div class="swiper-slide hero-slide">
+        <img
+          src="${slide.imagePath}"
+          alt="${slide.title}"
+          class="slide-image"
+        />
+        <div class="slide-text-overlay">
+          <h4  class="slide-pretitle" data-sly-test="${slide.pretitle}">${slide.pretitle}</h4>
+
+          <h2 class="slide-title">${slide.title}</h2>
+
+          <p class="slide-subtitle" data-sly-test="${slide.subtitle}">${slide.subtitle}</p>
+
+          <a
+            class="slide-cta"
+            href="${slide.ctaLink}.html"
+            class="button"
+            data-sly-test="${slide.ctaLink}"
+          >
+            ${slide.ctaText || 'Learn More'}
+          </a>
+        </div>
+      </div>
+      ...
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+
+    <!-- If we need scrollbar -->
+    <div class="swiper-scrollbar"></div>
+  </div>
+
+  <sly data-sly-test="${!model.slides}">
+    <div
+      class="cq-placeholder"
+      data-emptytext="Hero Slider Component - Please add slides in the dialog"
+    ></div> </sly
+></sly>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  // We wait for the DOM to be fully loaded so the script can find your HTML elements
+  document.addEventListener("DOMContentLoaded", function () {
+    const swiper = new Swiper(".swiper", {
+      direction: "horizontal",
+      loop: true,
+      // If you added pagination dots or arrows in your HTML, these turn them on:
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  });
+</script>

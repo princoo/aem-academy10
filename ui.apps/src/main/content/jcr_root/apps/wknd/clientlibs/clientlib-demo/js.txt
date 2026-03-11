@@ -1,0 +1,4 @@
+#base=js
+swiper-bundle.min.js
+swiper.js
+hero-slider.js

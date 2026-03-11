@@ -1,0 +1,133 @@
+
+.swiper {
+    width: 100%;
+    height: 600px; 
+}
+
+.hero-slide {
+    position: relative; 
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center; 
+    justify-content: flex-start; 
+    background-color: #111111; 
+    overflow: hidden;
+}
+
+.hero-slide .slide-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    z-index: 1; 
+}
+
+.hero-slide::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+    z-index: 2; /* Sits between the image and the text */
+}
+
+/* 5. The Text Container */
+.hero-slide .slide-text-overlay {
+    position: relative;
+    z-index: 3; /* Highest layer: floats above the image and gradient */
+    padding-left: 8%; /* Pushes the text in from the left edge */
+    max-width: 650px; 
+    padding-top: 10%; /* Adjusts vertical position of the text */
+    text-align: left;
+}
+
+/* 6. Typography (Matching the concert reference) */
+.hero-slide h2 {
+    color: #ffffff;
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+}
+
+.hero-slide h4 {
+    color: #f0f0f0;
+    font-size: 26px;
+    font-weight: 400;
+    margin: 0 0 16px 0;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.hero-slide p {
+    color: #b3b3b3;
+    font-size: 16px;
+    margin: 0 0 32px 0;
+    font-weight: 300;
+}
+
+/* 7. The Primary CTA Button (Blue/Indigo Pill Shape) */
+.hero-slide .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 36px;
+    background-color: #4f46e5; /* The indigo color from your reference */
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    border-radius: 40px; /* Creates the rounded pill shape */
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.hero-slide .button:hover {
+    background-color: #3730a3; /* Darkens slightly on hover */
+}
+
+/* Removing the arrow icon from the previous wireframe design */
+.hero-slide .button::after {
+    content: none; 
+}
+
+.hero-slide h4 {
+    color: orange; 
+    font-size: 16px;
+    font-weight: 800;
+    text-transform: uppercase; 
+    letter-spacing: 2.5px;
+    margin: 0 0 12px 0;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6); /* Lifts the text off the image */
+}
+
+/* 5. Main Title (Massive, Bold, and Tight) */
+.hero-slide h2 {
+    color: #ffffff;
+    font-size: 56px; /* Make it huge */
+    font-weight: 900; 
+    line-height: 1.05; 
+    letter-spacing: -1px; 
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+    text-shadow: 2px 3px 10px rgba(0, 0, 0, 0.7); /* Deep shadow for heavy contrast */
+}
+
+/* 6. Subtitle (Soft and Legible) */
+.hero-slide p {
+    color: #e2e8f0; /* An off-white/light gray so it doesn't compete with the title */
+    font-size: 20px;
+    font-weight: 300; /* Thin font weight for elegant contrast against the bold title */
+    line-height: 1.5;
+    margin: 0 0 35px 0;
+    max-width: 500px; /* Prevents the text from stretching too wide across the screen */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}

@@ -1,0 +1,19 @@
+<div class="cmp-team-list" 
+     data-sly-use.model="com.adobe.aem.guides.wknd.core.models.TeamListModel">
+    
+    <h2 class="cmp-team-list__title">Meet Our Team</h2>
+
+    <ul class="cmp-team-list__items" data-sly-list.member="${model.members}">
+        <li class="cmp-team-list__item">
+            <h3 class="cmp-team-list__item-name">${member.name}</h3>
+            <p class="cmp-team-list__item-role">${member.role}</p>
+        </li>
+    </ul>
+
+    <div class="cmp-team-list__empty" data-sly-test="${!model.members}">
+        <p>Please configure the component and add team members.</p>
+    </div>
+
+</div>
+
+<!--/* <sly data-sly-call="${template.placeholder @ isEmpty=!model.members, classAppend='cmp-team-list'}"></sly> */-->

@@ -1,0 +1,43 @@
+<div data-sly-use.model="com.adobe.aem.guides.wknd.core.models.CustomList">
+  <h2 data-sly-test="${properties.listTitle}">${properties.listTitle}</h2>
+  ${model.viewCount}
+  <div
+    style="
+      background: yellow;
+      color: black;
+      padding: 10px;
+      font-weight: bold;
+      text-align: center;
+    "
+  >
+    CURRENT ENVIRONMENT: ${model.environment}
+  </div>
+  <div class="custom-card-grid">
+    <sly data-sly-list.item="${model.customListItems}">
+      <div class="custom-card">
+        <div class="card-content">
+          <h3 class="card-title">${item.title}</h3>
+
+          <p class="card-date" data-sly-test="${item.lastModified}">
+            ${'dd MMM yyyy' @ format=item.lastModified}
+          </p>
+
+          <p class="card-description" data-sly-test="${item.description}">
+            ${item.description}
+          </p>
+
+          <p class="card-description" data-sly-test="${!item.description}">
+            Read more to explore this topic.
+          </p>
+        </div>
+
+        <div class="card-footer">
+          <a href="${item.URL}" class="card-button">Explore</a>
+        </div>
+      </div>
+    </sly>
+  </div>
+  <sly
+    data-sly-include="/apps/wknd/components/content/pagination/pagination.html"
+  />
+</div>

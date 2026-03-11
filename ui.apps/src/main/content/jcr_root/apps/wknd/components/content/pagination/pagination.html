@@ -1,0 +1,21 @@
+<nav class="cmp-pagination" 
+     data-sly-use.model="com.adobe.aem.guides.wknd.core.models.CustomList"
+     data-sly-test="${model.totalPages > 1}">
+
+    <a class="pagination-item ${!model.hasPrevious ? 'is-disabled' : ''}"
+       href="${currentPage.path}.${model.previousPage}.html">
+       &laquo; Previous
+    </a>
+
+    <ul class="pagination-list" data-sly-list.pageNum="${model.pageNumbers}">
+        <li class="pagination-number ${model.currentPage == pageNum ? 'is-active' : ''}">
+            <a href="${currentPage.path}.${pageNum}.html">${pageNum}</a>
+        </li>
+    </ul>
+
+    <a class="pagination-item ${!model.hasNext ? 'is-disabled' : ''}"
+       href="${currentPage.path}.${model.nextPage}.html">
+       Next &raquo;
+    </a>
+
+</nav>
