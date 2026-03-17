@@ -1,18 +1,29 @@
 //== Base
 
+:root {
+    --theme-bg: #{$color-white};
+    --theme-text-secondary: #{$color-white};
+    --theme-primary: #{$color-primary};
+    --theme-secondary: #{$color-secondary};
+    --theme-tertiary: #{$color-tertiary};
+}
+
+[data-theme="dark"] {
+    --theme-bg: #{$color-primary};
+    --theme-primary: #{$color-white};
+    --theme-text-secondary: #{$color-primary};
+    --theme-secondary: #{$color-secondary};
+    --theme-tertiary: #{$color-tertiary};
+}
+
 html,
 body {
     margin: 0;
-    font-size:   $font-size;
+    font-size: $font-size;
     font-family: $font-family;
     line-height: $font-height;
-    color:       $color-foreground;
-    background:  $color-background;
-
-    @media (prefers-color-scheme: dark) {
-        color:       $color-foreground-dark;
-        background:  $color-background-dark;
-    }
+    color: var(--theme-text);
+    background-color: var(--theme-bg);
 }
 
 
@@ -22,6 +33,10 @@ a {
     @media (prefers-color-scheme: dark) {
         color: $color-link-dark;
     }
+}
+
+p {
+    margin: 0px;
 }
 
 button,

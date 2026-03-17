@@ -2,3 +2,6 @@
 swiper-bundle.min.js
 swiper.js
 hero-slider.js
+weather.js
+loadList.js
+theme.js

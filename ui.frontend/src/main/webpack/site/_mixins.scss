@@ -1,0 +1,40 @@
+@mixin font-size($size: 20px, $height: $line-height-normal, $spacing: 0px, $color: var(--theme-primary)) {
+    font-size: $size;
+    line-height: $height;
+    letter-spacing: $spacing;
+    color: $color;
+}
+
+@mixin btn-variant($bg-color: var(--theme-primary), $text-color: var(--theme-text-secondary), $border-color: var(--theme-primary)) {
+    background-color: $bg-color;
+    color: $text-color;
+    border: 1px solid $border-color;
+
+    &:hover {
+        background-color: color-mix(in srgb, #{$bg-color}, black 10%);
+    }
+
+}
+
+@mixin btn-tertiary-variant($color) {
+    color: $color;
+    border-bottom: 2px solid $color;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        filter: brightness(0.8);
+        padding-left: 4px;
+    }
+}
+
+@mixin mobile-only {
+    @media (max-width:($breakpoint-desktop - 1)) {
+        @content;
+    }
+}
+
+@mixin desktop-only {
+    @media (min-width:$breakpoint-desktop) {
+        @content;
+    }
+}

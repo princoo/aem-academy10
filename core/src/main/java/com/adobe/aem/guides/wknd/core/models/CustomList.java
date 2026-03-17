@@ -14,8 +14,11 @@ public interface CustomList extends List {
     int getTotalPages();
 
     boolean isHasNext();
-
+    
     boolean isHasPrevious();
+
+    int getNextPage();
+
 
     interface ListAdvancedItem extends CustomList {
         String getDescription();

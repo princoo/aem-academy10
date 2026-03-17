@@ -1,18 +1,8 @@
 <div data-sly-use.model="com.adobe.aem.guides.wknd.core.models.CustomList">
   <h2 data-sly-test="${properties.listTitle}">${properties.listTitle}</h2>
   ${model.viewCount}
-  <div
-    style="
-      background: yellow;
-      color: black;
-      padding: 10px;
-      font-weight: bold;
-      text-align: center;
-    "
-  >
-    CURRENT ENVIRONMENT: ${model.environment}
-  </div>
-  <div class="custom-card-grid">
+
+  <div id="custom-card-grid" class="custom-card-grid">
     <sly data-sly-list.item="${model.customListItems}">
       <div class="custom-card">
         <div class="card-content">
@@ -37,7 +27,19 @@
       </div>
     </sly>
   </div>
-  <sly
-    data-sly-include="/apps/wknd/components/content/pagination/pagination.html"
-  />
+
+  <div class="load-more-wrapper" style="text-align: center; margin-top: 20px">
+    <sly data-sly-test="${model.hasNext}">
+      <button
+        id="btn-load-more"
+        class="card-button"
+        data-component-path="${resource.path}"
+        data-next-page="${model.nextPage}"
+      >
+        Load More
+      </button>
+    </sly>
+  </div>
+
+  <!--/* <sly data-sly-include="/apps/wknd/components/content/pagination/pagination.html" /> */-->
 </div>

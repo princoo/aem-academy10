@@ -1,0 +1,43 @@
+.title-xl {
+    @include font-size(74px, normal);
+
+    @include mobile-only {
+        @include font-size(48px, normal);
+    }
+}
+
+.title-lg {
+    @include font-size(48px, normal);
+
+    @include mobile-only {
+        @include font-size(36px, normal);
+    }
+}
+
+.title-md {
+    @include font-size(32px, normal);
+
+    @include mobile-only {
+        @include font-size(24px, normal);
+    }
+}
+
+.title-sm {
+    @include font-size(20px, normal);
+
+    @include mobile-only {
+        @include font-size(16px, normal);
+    }
+}
+
+.text-lg {
+    @include font-size(20px, normal);
+}
+
+.text-md {
+    @include font-size(16px, 24px);
+}
+
+.text-normal {
+    @include font-size(14px, 20px, 2px);
+}

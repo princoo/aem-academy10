@@ -4,6 +4,7 @@ import com.adobe.aem.guides.wknd.core.services.PageViewCountService;
 import com.adobe.aem.guides.wknd.core.services.SimpleGreetingService;
 import com.adobe.cq.wcm.core.components.models.ListItem;
 import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.Default;
@@ -51,16 +52,15 @@ public class CustomListImpl implements CustomList {
     private List<Integer> pageNumbers = new ArrayList<>();
     private ValueMap properties;
 
-    // @ValueMapValue
-    // @Default(intValues = 5)
-    // private int pageSize;
+    @ValueMapValue
+    @Default(intValues = 5)
+    private int pageSize;
 
     @OSGiService
     private PageViewCountService viewCountService;
 
     @PostConstruct
     protected void init() {
-        int pageSize = viewCountService.getPageSize();
         if (currentPage != null && currentPage.getContentResource() != null) {
             this.properties = currentPage.getContentResource().getValueMap();
         }
@@ -72,7 +72,6 @@ public class CustomListImpl implements CustomList {
         }
 
         List<ListItem> allItems = new ArrayList<>(coreList.getListItems());
-        allItems.sort((a, b) -> Integer.compare(getViewCountForItem(b), getViewCountForItem(a)));
         int total = allItems.size();
 
         totalPages = (int) Math.ceil((double) total / pageSize);
@@ -119,6 +118,7 @@ public class CustomListImpl implements CustomList {
     public String getEnvironment() {
         return viewCountService.getEnvName();
     }
+
     public Collection<ListItem> getCustomListItems() {
         return paginatedItems;
     }

@@ -1,4 +1,46 @@
 .cmp-button {}
+
 .cmp-button__text {}
+
 .cmp-button__icon {}
+
 //.cmp-button__icon--myIcon {}
+
+
+.btn {
+    display: flex;
+    gap: 130px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    min-width: 350px;
+    font-family: $primary-font-family;
+    font-size: 16px;
+    line-height: 28px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+
+    &:focus {
+        box-shadow: 0 0 0 3px rgba(var(--theme-primary), 0.3);
+    }
+
+    &--primary {
+        @include btn-variant($bg-color: var(--theme-primary), $text-color: var(--theme-text-secondary), $border-color: var(--theme-primary));
+    }
+
+    &--secondary {
+        @include btn-variant($bg-color: transparent, $text-color: var(--theme-primary), $border-color: var(--theme-primary));
+    }
+
+    &--tertiary {
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        padding: 4px 0;
+        gap: 16px;
+        min-width: 182px;
+        @include btn-tertiary-variant(var(--theme-primary));
+    }
+}

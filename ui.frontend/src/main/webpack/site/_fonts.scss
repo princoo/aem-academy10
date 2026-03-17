@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url('../resources/fonts/roboto/Roboto-Variable.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Atkinson';
+    src: url('../resources/fonts/atkinson-hyperlegible/AtkinsonHyperlegible-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Atkinson';
+    src: url('../resources/fonts/atkinson-hyperlegible/AtkinsonHyperlegible-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Atkinson';
+    src: url('../resources/fonts/atkinson-hyperlegible/AtkinsonHyperlegible-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Atkinson';
+    src: url('../resources/fonts/atkinson-hyperlegible/AtkinsonHyperlegible-BoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}

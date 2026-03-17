@@ -1,18 +1,35 @@
-
 //== Font
 
-$font-family:           "Helvetica Neue", Helvetica, Arial, sans-serif;
-$font-size:             16px;
-$font-height:           1.5;
+$font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-size: 16px;
+$font-height: 1.5;
+//--------------------------------
+$primary-font-family: "Roboto", Helvetica, Arial, sans-serif;
+$secondary-font-family: "Atkinson", Helvetica, Arial, sans-serif;
+//--------------------------------
 
 //== Color
 
 // Normal mode
-$color-foreground:      #202020;
-$color-background:      #ECECEC;
-$color-link:            #2020E0;
+$color-foreground: #202020;
+$color-background: #ECECEC;
+$color-link: #2020E0;
+//---------------------------------
+$color-primary: #01334B;
+$color-secondary: #AACEDF;
+$color-tertiary: #E5F0F5;
+$color-white: #FFFFFF;
+//----------------------------------
+
+// screens
+$breakpoint-mobile: 390px;
+$breakpoint-desktop: 1440px;
+
+// line height
+$line-height-body: 1.6;
+$line-height-normal: normal;
 
 // Dark mode
 $color-foreground-dark: invert($color-foreground);
-$color-background-dark: invert($color-background);
-$color-link-dark:       invert($color-link);
+$color-background-dark: #FFFFFF;
+$color-link-dark: invert($color-link);

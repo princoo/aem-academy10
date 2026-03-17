@@ -1,0 +1,46 @@
+$brand-colors: (
+    // "primary": $color-primary,
+    // "secondary": $color-secondary,
+    // "tertiary": $color-tertiary,
+    "primary": var(--theme-primary),
+    "secondary": var(--theme-secondary),
+    "tertiary": var(--theme-tertiary),
+);
+
+@each $name, $color in $brand-colors {
+    .bg-#{$name} {
+        background-color: $color;
+    }
+
+    .text-#{$name} {
+        color: $color !important;
+    }
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.fw-bold {
+    font-weight: 700;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.hide-mobile {
+    @include mobile-only {
+        display: none !important;
+    }
+}
+
+.hide-desktop {
+    @include desktop-only {
+        display: none !important;
+    }
+}
