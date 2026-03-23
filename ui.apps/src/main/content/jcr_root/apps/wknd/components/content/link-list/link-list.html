@@ -1,0 +1,19 @@
+<div
+  class="cmp-link-list"
+  data-sly-use.model="com.adobe.aem.guides.wknd.core.models.footer.LinkListModel"
+>
+  <h3
+    class="cmp-link-list__title fw-bold text-uppercase"
+    data-sly-test="${model.title}"
+  >
+    ${model.title}
+  </h3>
+
+  <ul class="cmp-link-list__list" data-sly-list.link="${model.links}">
+    <li class="cmp-link-list__item">
+      <a href="${link.linkUrl}" class="cmp-link-list__link text-text-secondary">
+        ${link.linkText}
+      </a>
+    </li>
+  </ul>
+</div>

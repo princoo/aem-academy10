@@ -1,0 +1,113 @@
+<sly
+  data-sly-use.model="com.adobe.aem.guides.wknd.core.models.header.HeaderModal"
+>
+  <header class="cmp-header">
+    <div
+      class="cmp-header__top-bar hide-mobile"
+      data-sly-test="${model.editorialLinks}"
+    >
+      <div class="cmp-header__container">
+        <ul
+          class="cmp-header__utils-list text-md"
+          data-sly-list.item="${model.editorialLinks}"
+        >
+          <li
+            class="cmp-header__utils-item text-md flex flex--justify-center flex--align-center u-gap-8"
+          >
+            <a
+              href="${item.linkUrl}"
+              class="cmp-header__utils-link u-capitalize-first"
+              >${item.linkText}</a
+            >
+            <i data-sly-test="${item.iconClass}" class="${item.iconClass}"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cmp-header__main-bar">
+      <div class="cmp-header__container">
+        <a href="#" class="cmp-header__logo">
+          <i class="icon-academy-Group-1171274760 title-lg"></i>
+        </a>
+        <div class="cmp-header__nav-container flex flex--align-center text-md">
+          <nav class="cmp-header__nav hide-mobile">
+            <ul
+              class="cmp-header__nav-list"
+              data-sly-list.child="${model.childPages}"
+            >
+              <li class="cmp-header__nav-item">
+                <a
+                  href="${child.path}.html"
+                  class="cmp-header__nav-link u-capitalize-first"
+                  >${child.title}</a
+                >
+              </li>
+            </ul>
+          </nav>
+
+          <div class="cmp-header__actions">
+            <button class="cmp-header__action-btn" aria-label="Search">
+              <i class="icon-academy-search text-lg"></i>
+            </button>
+
+            <button
+              class="cmp-header__action-btn js-header-toggle hide-desktop"
+              aria-label="Open Menu"
+            >
+              <i class="icon-academy-menu title-md"></i>
+            </button>
+            <button
+              class="cmp-header__action-btn js-header-close hide-desktop bg-primary hide"
+              aria-label="Open Menu"
+            >
+              <i class="icon-academy-close title-md"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmp-header__modal js-header-modal">
+      <div class="cmp-header__modal-inner">
+        <div class="cmp-header__modal-top">
+          <nav class="cmp-header__mobile-nav">
+            <ul
+              class="cmp-header__nav-list"
+              data-sly-list.child="${model.childPages}"
+            >
+              <li class="cmp-header__nav-item">
+                <a
+                  href="${child.path}"
+                  class="cmp-header__nav-link u-capitalize-first"
+                  >${child.title}</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="cmp-header__modal-bottom bg-secondary">
+          <nav class="cmp-header__mobile-nav">
+            <ul
+              class="cmp-header__nav-list-bottom"
+              data-sly-list.item="${model.editorialLinks}"
+            >
+              <li class="cmp-header__nav-item">
+                <a
+                  href="${item.linkUrl}"
+                  class="cmp-header__nav-link u-capitalize-first"
+                  >${item.linkText}</a
+                >
+                <i
+                  data-sly-test="${item.iconClass}"
+                  class="${item.iconClass}"
+                ></i>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+</sly>

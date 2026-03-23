@@ -12,8 +12,8 @@
     --theme-bg: #{$color-primary};
     --theme-primary: #{$color-white};
     --theme-text-secondary: #{$color-primary};
-    --theme-secondary: #{$color-secondary};
-    --theme-tertiary: #{$color-tertiary};
+    --theme-secondary: #{$color-secondary-dark};
+    --theme-tertiary: #{$color-tertiary-dark};
 }
 
 html,
@@ -28,11 +28,8 @@ body {
 
 
 a {
-    color: $color-link;
-
-    @media (prefers-color-scheme: dark) {
-        color: $color-link-dark;
-    }
+    color: var(--theme-primary);
+    text-decoration: none;
 }
 
 p {

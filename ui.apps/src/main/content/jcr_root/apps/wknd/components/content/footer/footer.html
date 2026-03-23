@@ -1,0 +1,30 @@
+<footer class="cmp-footer">
+  <div
+    class="cmp-footer__container"
+    data-sly-use.model="com.adobe.aem.guides.wknd.core.models.footer.FooterModel"
+  >
+    <div class="cmp-footer__main has-cols-${model.columnCount || '4'}">
+      <sly data-sly-list.index="${model.columnsToRender}">
+        <div
+          class="cmp-footer__column"
+          data-sly-resource="${'col-{0}' @ format=[index], resourceType='wknd/components/content/link-list'}"
+        ></div>
+      </sly>
+    </div>
+    <div class="cmp-footer__bottom">
+      <div class="cmp-footer__copyright">© ${model.copyrightText}</div>
+      <!--/* <div data-sly-resource="${'footer-links' @ resourceType='wknd/components/content/editorial-links'}"></div> */-->
+      <ul
+        class="cmp-footer__utils-list"
+        data-sly-test="${model.utilsLinks}"
+        data-sly-list.util="${model.utilsLinks}"
+      >
+        <li class="cmp-footer__utils-item">
+          <a href="${util.linkUrl}" class="cmp-footer__utils-link"
+            >${util.linkText}</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>

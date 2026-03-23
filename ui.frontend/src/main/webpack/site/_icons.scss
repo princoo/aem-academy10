@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('../resources/fonts/academy/icomoon.eot?tdeiwf');
-  src:  url('../resources/fonts/academy/icomoon.eot?tdeiwf#iefix') format('embedded-opentype'),
-    url('../resources/fonts/academy/icomoon.ttf?tdeiwf') format('truetype'),
-    url('../resources/fonts/academy/icomoon.woff?tdeiwf') format('woff'),
-    url('../resources/fonts/academy/icomoon.svg?tdeiwf#icomoon') format('svg');
+  src:  url('../resources/fonts/academy/icomoon.eot?4tx82v');
+  src:  url('../resources/fonts/academy/icomoon.eot?4tx82v#iefix') format('embedded-opentype'),
+    url('../resources/fonts/academy/icomoon.ttf?4tx82v') format('truetype'),
+    url('../resources/fonts/academy/icomoon.woff?4tx82v') format('woff'),
+    url('../resources/fonts/academy/icomoon.svg?4tx82v#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,7 +25,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-academy-close:before {
+  content: "\e90d";
+  color: #fff;
+}
 .icon-academy-help:before {
+  content: "\e90c";
+}
+.icon-academy-menu:before {
   content: "\e90b";
 }
 .icon-academy-Vector:before {

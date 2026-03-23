@@ -1,10 +1,8 @@
 $brand-colors: (
-    // "primary": $color-primary,
-    // "secondary": $color-secondary,
-    // "tertiary": $color-tertiary,
     "primary": var(--theme-primary),
     "secondary": var(--theme-secondary),
     "tertiary": var(--theme-tertiary),
+    "text-secondary": var(--theme-text-secondary),
 );
 
 @each $name, $color in $brand-colors {
@@ -33,6 +31,30 @@ $brand-colors: (
     text-align: right;
 }
 
+.flex {
+    display: flex;
+
+    &--direction-column {
+        flex-direction: column;
+    }
+
+    &--direction-row {
+        flex-direction: row;
+    }
+
+    &--justify-between {
+        justify-content: space-between;
+    }
+
+    &--justify-center {
+        justify-content: center;
+    }
+
+    &--align-center {
+        align-items: center;
+    }
+}
+
 .hide-mobile {
     @include mobile-only {
         display: none !important;
@@ -42,5 +64,40 @@ $brand-colors: (
 .hide-desktop {
     @include desktop-only {
         display: none !important;
+    }
+}
+
+.hide {
+    display: none !important;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+.u-capitalize-first {
+    display: inline-block;
+
+    &::first-letter {
+        text-transform: uppercase;
+    }
+}
+
+$spacers: (
+    0,
+    4,
+    8,
+    12,
+    16,
+    24,
+    32,
+    40,
+    48,
+    64
+);
+
+@each $space in $spacers {
+    .u-gap-#{$space} {
+        gap: #{$space}px !important;
     }
 }

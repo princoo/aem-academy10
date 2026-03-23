@@ -1,0 +1,2 @@
+#base=js
+footer-validation.js

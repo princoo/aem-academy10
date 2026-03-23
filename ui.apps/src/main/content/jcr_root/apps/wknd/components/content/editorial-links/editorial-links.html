@@ -1,0 +1,10 @@
+<ul class="cmp-editorial-links" 
+    data-sly-use.model="com.adobe.aem.guides.wknd.core.models.EditorialLinksModel"
+    data-sly-list.item="${model.links}">
+    <li class="cmp-editorial-links__item">
+        <a href="${item.linkUrl}" class="cmp-editorial-links__link">
+            ${item.linkText}
+        </a>
+        <i data-sly-test="${item.iconClass}" class="${item.iconClass}"></i>
+    </li>
+</ul>

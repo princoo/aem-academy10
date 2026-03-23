@@ -1,0 +1,42 @@
+.cmp-link-list {
+
+    &__title {
+        @include font-size(14px, 20px, 6%, var(--theme-text-secondary));
+    }
+
+    &__list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        @include mobile-only {
+            gap: 8px;
+        }
+    }
+
+    &__link {
+        @include font-size(16px, 24px, 0%, var(--theme-text-secondary));
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    @include mobile-only {
+        padding: 32px 0px;
+        border-right: none;
+        border-bottom: 1px solid #ffffff;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &:first-child {
+            border-left: none;
+        }
+    }
+}
