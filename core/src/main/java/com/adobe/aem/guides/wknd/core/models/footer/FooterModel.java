@@ -14,8 +14,6 @@ import javax.annotation.PostConstruct;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FooterModel {
 
-    // @ChildResource
-    // private List<FooterColumn> columns;
 
     @ValueMapValue
     private String copyrightText;
