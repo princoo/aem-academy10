@@ -1,0 +1,14 @@
+.text-primary {
+    background-color: var(--theme-primary) !important;
+    color: white !important;
+}
+
+.text-secondary {
+    background-color: var(--theme-secondary) !important;
+    color: white !important;
+}
+
+.text-tertiary {
+    background-color: var(--theme-tertiary) !important;
+    color: white !important;
+}

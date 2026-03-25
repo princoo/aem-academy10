@@ -1,0 +1,20 @@
+<div
+  data-sly-use.title="com.adobe.cq.wcm.core.components.models.Title"
+  id="${title.id}"
+  class="cmp-title cmp-atomic-title ${properties.titleSize} ${properties.titleColor} cmp-atomic-title--${properties.alignment} ${properties.showBorder ? 'cmp-atomic-title--has-border' : ''}"
+>
+  <h1
+    class="cmp-title__text cmp-atomic-title__text"
+    data-sly-element="${title.type}"
+    data-sly-test="${properties.jcr:title}"
+  >
+    ${title.text}
+  </h1>
+
+  <div
+    data-sly-test="${wcmmode.edit && !properties.jcr:title}"
+    class="cmp-title__manual-placeholder"
+  >
+    <span>${properties.placeholder || 'Click to configure this title'}</span>
+  </div>
+</div>

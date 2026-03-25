@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root
+    xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    xmlns:cq="http://www.day.com/jcr/cq/1.0"
+    xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    heroBannerVariant="heroBanner--variant-1">
+
+    <pretitle
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="wknd/components/atomics/title"
+        placeholder="Edit Pretitle"
+        titleSize="title-md"
+        titleColor="text-primary"
+    />
+    <title
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="wknd/components/atomics/title"
+        placeholder="Edit Main Title"
+        titleSize="title-xl"
+        titleColor="text-primary"
+    />
+    <caption
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="wknd/components/atomics/title"
+        placeholder="Edit Caption"
+        titleSize="title-sm"
+        titleColor="text-primary"
+    />
+</jcr:root>

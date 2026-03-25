@@ -101,3 +101,10 @@ $spacers: (
         gap: #{$space}px !important;
     }
 }
+
+.color-preview-wrapper {
+    display: block;
+    padding: 10px 15px;
+    margin: -5px -10px; /* Expands the color to the edges of the item */
+    border-radius: 0;   /* Keeps it looking like a clean list */
+}
