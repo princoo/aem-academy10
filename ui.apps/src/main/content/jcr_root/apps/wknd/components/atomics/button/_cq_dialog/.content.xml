@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+    xmlns:cq="http://www.day.com/jcr/cq/1.0"
+    xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Button"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    extraClientlibs="[core.wcm.components.button.v2.editor,wknd.site,wknd.components.atomic.button.editor]"
+    helpPath="https://www.adobe.com/go/aem_cmp_button_v2"
+    trackingFeature="core-components:button:v2">
+    <content
+        granite:class="cmp-button__editor"
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured" sling:hideChildren="[icon,id]">
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </properties>
+                    <appearanceTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Appearance"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true"
+                        sling:orderBefore="accessibility"
+                        >
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+
+                                            <buttonType
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Button Style"
+                                                name="./type"
+                                                granite:class="custom-color-dropdown">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <primary jcr:primaryType="nt:unstructured"
+                                                        text="Primary (Solid)" value="primary" />
+                                                    <secondary jcr:primaryType="nt:unstructured"
+                                                        text="Secondary (Outline)" value="secondary" />
+                                                    <tertiary jcr:primaryType="nt:unstructured"
+                                                        text="Tertiary (Text Only)" value="tertiary" />
+                                                </items>
+                                            </buttonType>
+
+                                            <iconType
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Link Icon"
+                                                fieldDescription="Select an icon."
+                                                granite:class="custom-icomoon-dropdown"
+                                                name="./iconType">
+                                                <datasource
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="wknd/datasources/icon-list" />
+                                            </iconType>
+
+                                            <buttonWidth
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Button Width"
+                                                name="./buttonWidth">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <standard jcr:primaryType="nt:unstructured"
+                                                        text="Standard (315px)"
+                                                        value="btn--width-standard" />
+                                                    <full jcr:primaryType="nt:unstructured"
+                                                        text="Full Width" value="btn--width-full" />
+                                                </items>
+                                            </buttonWidth>
+
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </appearanceTab>
+
+                    <styletab
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/include"
+                        path="/mnt/overlay/cq/gui/components/authoring/dialog/style/tab_edit/styletab" />
+
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

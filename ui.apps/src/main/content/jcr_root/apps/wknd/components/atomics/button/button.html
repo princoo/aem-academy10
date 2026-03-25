@@ -1,0 +1,30 @@
+<sly data-sly-use.button="com.adobe.cq.wcm.core.components.models.Button">
+  <div data-sly-test="${wcmmode.edit && !button.text}" class="cq-placeholder">
+    <span>${properties.placeholder || 'Configure button'}</span>
+  </div>
+
+  <div
+    class="btn-alignment-wrapper btn-alignment--${properties.align}"
+    data-sly-test="${button.text}"
+  >
+    <a
+      data-sly-element="${button.buttonLink.valid && !properties.buttonEventInPage ? 'a' : 'button'}"
+      id="${button.id}"
+      class="btn btn--${properties.type} ${properties.buttonWidth}"
+      data-sly-attribute="${{
+       'href': button.buttonLink.valid ? button.buttonLink.URL : none,
+       'type': button.buttonLink.valid ? none : 'button'
+        }}"
+      aria-label="${button.accessibilityLabel || button.text}"
+      data-sly-attribute="${button.buttonLink.htmlAttributes}"
+    >
+      <span class="btn__text">${button.text}</span>
+
+      <i
+        data-sly-test="${properties.iconType}"
+        class="${properties.iconType}"
+        aria-hidden="true"
+      ></i>
+    </a>
+  </div>
+</sly>

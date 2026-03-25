@@ -28,4 +28,12 @@
         titleSize="title-sm"
         titleColor="text-primary"
     />
+    <cta-1
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="wknd/components/atomics/title"
+        placeholder="Configure Button"
+        type="primary"
+        iconType="icon-academy-arrow_forward"
+        buttonWidth="btn--width-standard"
+    />
 </jcr:root>
