@@ -1,0 +1,34 @@
+<sly
+  data-sly-use.textModel="com.adobe.cq.wcm.core.components.models.Text"
+  data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+  data-sly-test.text="${textModel.text}"
+></sly>
+<div
+  data-sly-use.textModel="com.adobe.cq.wcm.core.components.models.Text"
+  data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+  data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+  id="${component.id}"
+  class="cmp-text"
+>
+  <div class="${properties.textStyle}">
+    <div
+      data-sly-test="${text && textModel.isRichText}"
+      class="cmp-atomic-text cmp-atomic-text--rich ${properties.lineClamp ? 'is-clamped' : ''}"
+    >
+      ${textModel.text @ context = 'html'}
+    </div>
+
+    <div
+      data-sly-test="${text && !textModel.isRichText}"
+      class="cmp-atomic-text cmp-atomic-text--plain ${properties.lineClamp ? 'is-clamped' : ''}"
+    >
+      ${textModel.text}
+    </div>
+
+    <sly data-sly-test="${!text}">
+      <p class="cmp-atomic-text--placeholder">
+        ${properties.placeholder || 'Configure the text component'}
+      </p>
+    </sly>
+  </div>
+</div>

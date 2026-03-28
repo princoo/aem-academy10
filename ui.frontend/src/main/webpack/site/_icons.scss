@@ -1,10 +1,81 @@
+// @font-face {
+//   font-family: 'icomoon';
+//   src:  url('../resources/fonts/academy/icomoon.eot?4tx82v');
+//   src:  url('../resources/fonts/academy/icomoon.eot?4tx82v#iefix') format('embedded-opentype'),
+//     url('../resources/fonts/academy/icomoon.ttf?4tx82v') format('truetype'),
+//     url('../resources/fonts/academy/icomoon.woff?4tx82v') format('woff'),
+//     url('../resources/fonts/academy/icomoon.svg?4tx82v#icomoon') format('svg');
+//   font-weight: normal;
+//   font-style: normal;
+//   font-display: block;
+// }
+
+// [class^="icon-academy-"], [class*=" icon-academy-"] {
+//   /* use !important to prevent issues with browser extensions that change fonts */
+//   font-family: 'icomoon' !important;
+//   speak: never;
+//   font-style: normal;
+//   font-weight: normal;
+//   font-variant: normal;
+//   text-transform: none;
+//   line-height: 1;
+
+//   /* Better Font Rendering =========== */
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+// }
+
+// .icon-academy-close:before {
+//   content: "\e90d";
+//   color: #fff;
+// }
+// .icon-academy-help:before {
+//   content: "\e90c";
+// }
+// .icon-academy-menu:before {
+//   content: "\e90b";
+// }
+// .icon-academy-Vector:before {
+//   content: "\e901";
+// }
+// .icon-academy-search:before {
+//   content: "\e902";
+// }
+// .icon-academy-arrow_forward:before {
+//   content: "\e903";
+// }
+// .icon-academy-download:before {
+//   content: "\e904";
+// }
+// .icon-academy-school:before {
+//   content: "\e905";
+// }
+// .icon-academy-graph_5:before {
+//   content: "\e906";
+// }
+// .icon-academy-receipt_long:before {
+//   content: "\e907";
+// }
+// .icon-academy-arrows_output:before {
+//   content: "\e908";
+// }
+// .icon-academy-cell_merge:before {
+//   content: "\e909";
+// }
+// .icon-academy-Group-1171274760:before {
+//   content: "\e90a";
+// }
+// .icon-academy-account_balance:before {
+//   content: "\e900";
+// }
+
 @font-face {
   font-family: 'icomoon';
-  src:  url('../resources/fonts/academy/icomoon.eot?4tx82v');
-  src:  url('../resources/fonts/academy/icomoon.eot?4tx82v#iefix') format('embedded-opentype'),
-    url('../resources/fonts/academy/icomoon.ttf?4tx82v') format('truetype'),
-    url('../resources/fonts/academy/icomoon.woff?4tx82v') format('woff'),
-    url('../resources/fonts/academy/icomoon.svg?4tx82v#icomoon') format('svg');
+  src:  url('../resources/fonts/academy/icomoon.eot?22qq77');
+  src:  url('../resources/fonts/academy/icomoon.eot?22qq77#iefix') format('embedded-opentype'),
+    url('../resources/fonts/academy/icomoon.ttf?22qq77') format('truetype'),
+    url('../resources/fonts/academy/icomoon.woff?22qq77') format('woff'),
+    url('../resources/fonts/academy/icomoon.svg?22qq77#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +96,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-academy-right:before {
+  content: "\e90e";
+}
 .icon-academy-close:before {
   content: "\e90d";
   color: #fff;

@@ -1,0 +1,104 @@
+/* .teaser-grid {
+  display: flex;
+  gap: 30px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .teaser-item {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+    &__content {
+      padding: 20px;
+
+      h3 {
+        margin: 0 0 10px 0;
+        font-family: sans-serif;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
+} */
+
+.teaser-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.teaser-card {
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    width:600px;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    &__content {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        flex-grow: 1;
+    }
+
+    /* Styling the slots for our Atoms */
+    &__pretitle {
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        // The Text Atom will provide the actual font-size/color
+    }
+
+    &__title {
+        margin-bottom: 0.5rem;
+    }
+
+    &__caption {
+        margin-top: auto;
+        padding-top: 1rem;
+        border-top: 1px solid #f3f4f6;
+    }
+    &__image-wrapper {
+        // --- The Engineering Fix ---
+        
+        // 1. Constrain the size
+        width: 100%; // Fill the container on mobile
+        max-width: 320px; // Never get bigger than this "Fixed" size on desktop
+        height: 200px;
+        // 2. Center it within the larger card
+        margin: 1rem auto 0; // Top, Left/Right (center), Bottom
+        
+        // 3. Force symmetry with a fixed shape (The Grid Protector)
+        aspect-ratio: 16 / 9; // Standard landscape. Use 1 / 1 for square.
+        
+        // 4. Miscellaneous cleanup
+        overflow: hidden;
+        border-radius: 4px; // Small radius for the image itself
+
+        // Ensuring the atom inside takes the full size we just defined
+        .cmp-atomic-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

@@ -1,0 +1,109 @@
+.hero-banner {
+    // padding: 32px 0px;
+    background-color: $color-secondary;
+    overflow: hidden;
+
+    &__container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 32px;
+
+    }
+
+    &__content {
+        flex: 1 1 50%;
+        display: flex;
+        flex-direction: column;
+        padding-left:100px;
+    }
+
+    &__breadcrumbs {
+        font-size: 0.85rem;
+        color: #4a5568;
+        margin-bottom: 0.5rem;
+
+        a {
+            text-decoration: none;
+            color: inherit;
+
+            &:hover {
+                color: #2c5282;
+            }
+        }
+    }
+
+    &__title {
+        margin-bottom: 0.75rem;
+    }
+
+    &__description {
+        margin-bottom: 2rem;
+    }
+
+    &__actions {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 320px;
+    }
+
+    &__carousel-nav {
+        
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        padding: 0px 100px;
+    }
+
+    &__carousel-arrow {
+        border-radius: 50%;
+        width: 52px;
+        height: 52px;
+        border: none;
+        background: #fff;
+        cursor: pointer;
+        color: #718096;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+
+        &:hover {
+            background: #f7fafc;
+        }
+    }
+
+    /* --- Right Column: Visual Styling --- */
+    &__visual {
+        flex: 1 1 50%; // Take up the other half
+        display: flex;
+        justify-content: flex-end; // Push image to the far right
+
+
+        // 1. The Capsule Shape
+        width: 100%;
+        // max-width: 600px;
+        height: 500px; // A fixed height safe zone (Method A from yesterday)
+        overflow: hidden; // Critical mask for the image
+
+        // 2. Heavy Rounding on all sides
+        // border-radius: 20rem; // A huge value that creates "Pill" corners
+        border-top-left-radius: 80px;
+        border-bottom-left-radius: 80px;
+
+        // Ensure the Image Atom expands to fill this new shape perfectly
+        .cmp-atomic-image {
+            width: 100%;
+            height: 100%;
+
+            &__image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; // Fill the shape, crop extra pixels (Symmetry!)
+                object-position: center;
+            }
+        }
+    }
+}

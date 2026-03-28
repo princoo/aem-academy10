@@ -1,8 +1,9 @@
 #base=js
-swiper-bundle.min.js
 swiper.js
 hero-slider.js
 weather.js
 loadList.js
 theme.js
 header.js
+swiper-bundle.min.js
+authoring-toolbar.js

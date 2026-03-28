@@ -105,6 +105,11 @@ $spacers: (
 .color-preview-wrapper {
     display: block;
     padding: 10px 15px;
-    margin: -5px -10px; /* Expands the color to the edges of the item */
-    border-radius: 0;   /* Keeps it looking like a clean list */
+    margin: -5px -10px;
+    border-radius: 0;
+}
+
+.u-rotate-180 {
+    transform: rotate(180deg);
+    transform-origin: center;
 }

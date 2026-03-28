@@ -1,0 +1,90 @@
+<!--/* <template data-sly-template.slide="${@ itemIndex}">
+  <div
+    class="swiper-slide hero-banner__container slide-item"
+    data-slide-index="${itemIndex}"
+  >
+    <div class="hero-banner__content">
+      <div class="hero-banner__pretitle">
+        <sly
+          data-sly-resource="${'pretitle_{0}' @ format=[itemIndex], resourceType='wknd/components/atomics/title'}"
+        ></sly>
+      </div>
+
+      <div class="hero-banner__title">
+        <sly
+          data-sly-resource="${'title_{0}' @ format=[itemIndex], resourceType='wknd/components/atomics/title'}"
+        ></sly>
+      </div>
+
+      <div class="hero-banner__description">
+        <sly
+          data-sly-resource="${'caption_{0}' @ format=[itemIndex], resourceType='wknd/components/atomics/text'}"
+        ></sly>
+      </div>
+
+      <div class="hero-banner__actions">
+        <div class="hero-banner__action">
+          <sly
+            data-sly-resource="${'ctaPrimary_{0}' @ format=[itemIndex], resourceType='wknd/components/atomics/button'}"
+          ></sly>
+        </div>
+        <div class="hero-banner__action">
+          <sly
+            data-sly-resource="${'cta-2-Primary_{0}' @ format=[itemIndex], resourceType='wknd/components/atomics/button'}"
+          ></sly>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-banner__visual">
+      <sly
+        data-sly-resource="${'heroImage_{0}' @ format=[itemIndex], resourceType='wknd/components/atomics/image'}"
+      ></sly>
+    </div>
+  </div>
+</template> */-->
+
+<template data-sly-template.slide="${@ namePrefix, isHidden}">
+  <sly data-sly-test="${!isHidden}">
+    <div class="swiper-slide hero-banner__container slide-item">
+      <div class="hero-banner__content">
+        <div class="hero-banner__pretitle">
+          <sly
+            data-sly-resource="${'{0}pretitle' @ format=[namePrefix], resourceType='wknd/components/atomics/title'}"
+          ></sly>
+        </div>
+
+        <div class="hero-banner__title">
+          <sly
+            data-sly-resource="${'{0}title' @ format=[namePrefix], resourceType='wknd/components/atomics/title'}"
+          ></sly>
+        </div>
+
+        <div class="hero-banner__description">
+          <sly
+            data-sly-resource="${'{0}caption' @ format=[namePrefix], resourceType='wknd/components/atomics/text'}"
+          ></sly>
+        </div>
+
+        <div class="hero-banner__actions">
+          <div class="hero-banner__action">
+            <sly
+              data-sly-resource="${'{0}ctaPrimary' @ format=[namePrefix], resourceType='wknd/components/atomics/button'}"
+            ></sly>
+          </div>
+          <div class="hero-banner__action">
+            <sly
+              data-sly-resource="${'{0}cta-2-Primary' @ format=[namePrefix], resourceType='wknd/components/atomics/button'}"
+            ></sly>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-banner__visual">
+        <sly
+          data-sly-resource="${'{0}heroImage' @ format=[namePrefix], resourceType='wknd/components/atomics/image'}"
+        ></sly>
+      </div>
+    </div>
+  </sly>
+</template>

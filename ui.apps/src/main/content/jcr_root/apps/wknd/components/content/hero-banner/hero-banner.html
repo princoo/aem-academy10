@@ -1,26 +1,37 @@
 <div>
-  <div>
-    <sly
-      data-sly-resource="${'pretitle' @ resourceType='/apps/wknd/components/atomics/title'}"
-    >
-    </sly>
-  </div>
-  <div>
-    <sly
-      data-sly-resource="${'title' @ resourceType='/apps/wknd/components/atomics/title'}"
-    >
-    </sly>
-  </div>
-  <div>
-    <sly
-      data-sly-resource="${'caption' @ resourceType='/apps/wknd/components/atomics/title'}"
-    >
-    </sly>
-  </div>
-  <div>
-    <sly
-      data-sly-resource="${'cta-1' @ resourceType='/apps/wknd/components/atomics/button'}"
-    >
-    </sly>
+
+  <div class="teaser-grid">
+    <div class="teaser-card">
+      <div class="teaser-card__image-wrapper">
+        <sly
+          data-sly-resource="${'teaserImage' @ resourceType='wknd/components/atomics/image'}"
+        ></sly>
+      </div>
+
+      <div class="teaser-card__content">
+        <div class="teaser-card__pretitle">
+          <sly
+            data-sly-resource="${'pretitle' @ resourceType='wknd/components/atomics/title'}"
+          ></sly>
+        </div>
+
+        <div class="teaser-card__title">
+          <sly
+            data-sly-resource="${'title' @ resourceType='wknd/components/atomics/title'}"
+          ></sly>
+        </div>
+
+        <div class="teaser-card__caption">
+          <sly
+            data-sly-resource="${'textInput' @ resourceType='wknd/components/atomics/text'}"
+          ></sly>
+        </div>
+        <div class="teaser-card__description">
+          <sly
+            data-sly-resource="${'cta-1' @ resourceType='/apps/wknd/components/atomics/button'}"
+          ></sly>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

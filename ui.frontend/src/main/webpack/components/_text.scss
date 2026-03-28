@@ -1,2 +1,34 @@
 .cmp-text {}
+
 .cmp-text__paragraph {}
+
+.cmp-atomic-text {
+
+    &.is-clamped {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        max-height: 4.5em;
+
+        &--rich {
+
+            p,
+            span,
+            div {
+                display: inline;
+                margin: 0;
+            }
+        }
+    }
+}
+
+.text-box {
+    max-width: 120px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    background-color: red;
+}

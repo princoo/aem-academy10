@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:EditConfig"
+    cq:actions="[EDIT,COPY,DELETE]">
+
+    <cq:actionConfigs jcr:primaryType="nt:unstructured">
+
+        <slidePrev
+            jcr:primaryType="nt:unstructured"
+            text="Previous Slide"
+            icon="coral-Icon--chevronLeft"
+            isNonMulti="{Boolean}true"
+            handler="WKND.SliderUtils.slidePrev" />
+
+        <slideNext
+            jcr:primaryType="nt:unstructured"
+            text="Next Slide"
+            icon="coral-Icon--chevronRight"
+            isNonMulti="{Boolean}true"
+            handler="WKND.SliderUtils.slideNext" />
+
+    </cq:actionConfigs>
+</jcr:root>
