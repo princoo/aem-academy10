@@ -3,3 +3,44 @@
 .cmp-breadcrumb__item {}
 .cmp-breadcrumb__item--active {}
 .cmp-breadcrumb__item-link {}
+
+.custom-breadcrumb {
+    padding: 15px 0;
+    background: transparent;
+}
+
+.custom-breadcrumb__list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.custom-breadcrumb__item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #01334B;
+}
+
+.custom-breadcrumb__link {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s;
+}
+
+.custom-breadcrumb__link:hover {
+    color: #000;
+}
+
+.custom-breadcrumb__separator {
+    margin: 0 10px;
+    color: #01334B;
+    font-weight: normal;
+}
+
+.custom-breadcrumb__item.is-active {
+    font-weight: 600;
+    color: var(--theme-primary);
+}
