@@ -1,0 +1,11 @@
+<div data-sly-use.model="com.adobe.aem.guides.wknd.core.models.TagModel" 
+     class="cmp-tag-picker">
+    
+    <div class="cmp-tag-picker__container" data-sly-list.tagTitle="${model.tagTitles}">
+        <span class="cmp-tag-picker__badge">${tagTitle}</span>
+    </div>
+
+    <sly data-sly-test="${wcmmode.edit && !model.tagTitles}">
+        <div class="cq-placeholder" data-emptytext="Aadd Tags">Add Tags</div>
+    </sly>
+</div>

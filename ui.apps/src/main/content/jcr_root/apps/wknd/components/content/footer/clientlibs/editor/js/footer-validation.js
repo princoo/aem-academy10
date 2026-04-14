@@ -1,6 +1,5 @@
 (function ($, Coral) {
     "use strict";
-    console.log("--- custom clientlibs loaded--")
     let registry = $(window).adaptTo("foundation-registry");
   
     // require validation for multifield max and min item

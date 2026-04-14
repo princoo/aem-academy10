@@ -1,0 +1,9 @@
+.cmp-tag-picker {
+    &__badge {
+        background-color: var(--theme-primary);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 16px;
+        text-transform: capitalize;
+    }
+}

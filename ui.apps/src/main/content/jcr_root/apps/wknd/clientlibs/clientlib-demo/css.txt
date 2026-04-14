@@ -3,5 +3,7 @@ style.css
 hero-slider.css
 custom-list.css
 ui-guide.css
+course-card.css
 teaser.css
 swiper-bundle.min.css
+news-section.css

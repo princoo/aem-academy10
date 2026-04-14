@@ -1,0 +1,16 @@
+<div class="news-wrapper ${properties.theme || 'theme-light'}">
+    <div class="line"></div>
+    <div class="news-content">
+        <div class="news__header">
+            <sly data-sly-resource="${'news-header' @ resourceType='wknd/components/atomics/title'}"></sly>
+        </div>
+
+        <div class="news__description">
+            <sly data-sly-resource="${'news-description' @ resourceType='wknd/components/atomics/text'}"></sly>
+        </div>
+
+        <div class="news__slider-container">
+            <sly data-sly-resource="${'items-slider' @ resourceType='wknd/components/content/courses-list'}"></sly>
+        </div>
+    </div>
+</div>

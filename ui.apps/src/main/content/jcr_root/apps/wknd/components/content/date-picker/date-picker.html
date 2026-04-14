@@ -1,0 +1,10 @@
+<div
+  data-sly-use.model="com.adobe.aem.guides.wknd.core.models.DateModel"
+  class="cmp-date-display"
+>
+  <p class="cmp-date-display__text">${model.formattedDate}</p>
+</div>
+
+<sly data-sly-test="${wcmmode.edit && !model.formattedDate}">
+  <div class="cq-placeholder" data-emptytext="Configure the Date"></div>
+</sly>

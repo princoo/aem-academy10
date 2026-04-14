@@ -1,0 +1,69 @@
+<!--/* <sly
+  data-sly-use.model="com.adobe.aem.guides.wknd.core.models.CourseSliderModel"
+  data-sly-use.cardTemplate="course-card.html"
+>
+  <div class="courses-wrapper">
+    <div class="line"></div>
+    <div class="courses">
+      <div class="courses__header">
+        <sly
+          data-sly-resource="${'courses-header' @ resourceType='wknd/components/atomics/title'}"
+        ></sly>
+      </div>
+      <div class="courses__description">
+        <sly
+          data-sly-resource="${'courses-description' @ resourceType='wknd/components/atomics/text'}"
+        ></sly>
+      </div>
+      <div class="swiper course-slider">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" data-sly-repeat.course="${model.courses}">
+            <sly data-sly-call="${cardTemplate.item @ course=course}"></sly>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-slider__carousel-nav">
+        <div class="course-slider__pagination"></div>
+
+        <div class="course-slider__navigation-buttons">
+          <button class="course-slider__carousel-arrow course-slider__prev">
+            <i class="icon-academy-right u-rotate-180"></i>
+          </button>
+          <button class="course-slider__carousel-arrow course-slider__next">
+            <i class="icon-academy-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p data-sly-test="${!model.courses}">No courses available.</p>
+</sly> */-->
+
+
+<sly data-sly-use.model="com.adobe.aem.guides.wknd.core.models.CourseSliderModel"
+     data-sly-use.cardTemplate="course-card.html">
+    
+    <div class="swiper course-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" data-sly-repeat.course="${model.courses}">
+                <sly data-sly-call="${cardTemplate.item @ course=course}"></sly>
+            </div>
+        </div>
+
+        <div class="course-slider__carousel-nav">
+            <div class="course-slider__pagination"></div>
+            <div class="course-slider__navigation-buttons">
+                <button class="course-slider__carousel-arrow course-slider__prev">
+                    <i class="icon-academy-right u-rotate-180"></i>
+                </button>
+                <button class="course-slider__carousel-arrow course-slider__next">
+                    <i class="icon-academy-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <p data-sly-test="${!model.courses}">No courses found for the current configuration.</p>
+</sly>

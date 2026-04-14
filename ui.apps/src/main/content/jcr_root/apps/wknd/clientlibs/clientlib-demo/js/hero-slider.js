@@ -2,11 +2,12 @@
     'use strict';
     function initSwipers() {
         const bannerElements = document.querySelectorAll('.hero-banner__swiper');
-
+        const savedIndex = bannerElements[0]?.dataset.initialSlide || 0;
         bannerElements.forEach(function(bannerElement) {
             if (!bannerElement.swiper) {
                 const parentBanner = bannerElement.closest('.hero-banner');
                 const isEditMode = parentBanner?.classList.contains('is-edit-mode');
+                const finalStartIndex = isEditMode ? savedIndex : 0;
                 const speedVal = Number.parseInt(bannerElement.dataset.speed, 10);
                 const autoplayConfig = isEditMode ? false : {
                 delay: speedVal,
@@ -16,8 +17,9 @@
                     direction: 'horizontal', 
                     loop: true,
                     autoplay: autoplayConfig,
+                    initialSlide: Number.parseInt(finalStartIndex),
                     pagination: {
-                        el: '.swiper-pagination',
+                        el: '.js-banner-pagination',
                         clickable: true 
                     },
                     navigation: {
@@ -30,24 +32,18 @@
         });
     }
 
-    // 2. Run it once on initial page load
     document.addEventListener('DOMContentLoaded', initSwipers);
 
-    // 3. The AEM Magic: Set up a MutationObserver to watch for dynamically added components
     const observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
-            // If AEM added new HTML nodes to the page...
             if (mutation.addedNodes && mutation.addedNodes.length > 0) {
-                // ...check if any of them are our sliders and initialize them!
                 initSwipers();
             }
         });
     });
 
-    // Start watching the entire body for changes
     observer.observe(document.body, {
         childList: true,
         subtree: true
     });
-
 })();

@@ -7,3 +7,4 @@ theme.js
 header.js
 swiper-bundle.min.js
 authoring-toolbar.js
+course-slider.js

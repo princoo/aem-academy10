@@ -1,0 +1,26 @@
+<template data-sly-template.item="${ @ course }">
+  <div class="card">
+    <div class="card-image">
+      <img src="${course.image}" alt="${course.title}" />
+    </div>
+    <div class="card-content">
+      <div class="card-date text-md u-capitalize-first">${course.startDate}</div>
+      <div class="card-tags" data-sly-list.tag="${course.tags}">
+        <span class="tag bg-primary text-text-secondary">${tag}</span>
+      </div>
+
+      <h2 class="card-title title-sm fw-bold">${course.title}</h2>
+
+      <div class="card-description text-md">
+        ${course.description @ context='html'}
+      </div>
+
+      <a href="${course.link}">
+        <button class="btn btn--tertiary">
+          <span> Show More </span>
+          <i class="icon-academy-arrow_forward"></i>
+        </button>
+      </a>
+    </div>
+  </div>
+</template>

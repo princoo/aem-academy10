@@ -2,69 +2,65 @@
   class="hero-banner ${wcmmode.edit ? 'is-edit-mode' : ''}"
   data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
   id="${component.id}"
->
+
+  >
   <sly
     data-sly-use.bannerModel="com.adobe.aem.guides.wknd.core.models.TopBannerModel"
   ></sly>
-  <sly data-sly-use.sliderTemplate="slider.html"></sly>
-  <div>
-    <div
-      class="swiper hero-banner__swiper"
-      data-speed="${properties.autoplaySpeed || 5000}"
-    >
-      <!--/* <div class="swiper-wrapper">
-        <sly data-sly-use.tpl="slider.html" />
-        <sly
-          data-sly-call="${tpl.slide @ namePrefix='slide1_', isHidden=properties.hideSlide1}"
-        />
-        <sly
-          data-sly-call="${tpl.slide @ namePrefix='slide2_', isHidden=properties.hideSlide2}"
-        />
-        <sly
-          data-sly-call="${tpl.slide @ namePrefix='slide3_', isHidden=properties.hideSlide3}"
-        />
-        <sly
-          data-sly-call="${tpl.slide @ namePrefix='slide4_', isHidden=properties.hideSlide4}"
-        />
-        <sly
-          data-sly-call="${tpl.slide @ namePrefix='slide5_', isHidden=properties.hideSlide5}"
-        />
-        <sly
-          data-sly-call="${tpl.slide @ namePrefix='slide6_', isHidden=properties.hideSlide6}"
-        />
-      </div> */-->
-      <div class="swiper-wrapper">
-        <sly data-sly-use.tpl="slider.html" />
-
-        <sly
-          data-sly-call="${tpl.slide @ namePrefix='slide1_', isHidden=properties.hideSlide1}"
-        />
-        <sly
-          data-sly-call="${tpl.slide @ namePrefix='slide2_', isHidden=properties.hideSlide2}"
-        />
-        <sly
-          data-sly-call="${tpl.slide @ namePrefix='slide3_', isHidden=properties.hideSlide3}"
-        />
-        <sly
-          data-sly-call="${tpl.slide @ namePrefix='slide4_', isHidden=properties.hideSlide4}"
-        />
-        <sly
-          data-sly-call="${tpl.slide @ namePrefix='slide5_', isHidden=properties.hideSlide5}"
-        />
-        <sly
-          data-sly-call="${tpl.slide @ namePrefix='slide6_', isHidden=properties.hideSlide6}"
-        />
-      </div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
+  <sly data-sly-use.tpl="slider.html"></sly>
+  <div class="hero-banner__main-container">
+    <div class="hero-banner__breadcrumb-wrapper">
+      <sly
+        data-sly-resource="${'breadcrumb' @ resourceType='wknd/components/content/breadcrumb'}"
+      ></sly>
     </div>
-    <div class="hero-banner__carousel-nav">
-      <button class="hero-banner__carousel-arrow js-banner-prev">
-        <i class="icon-academy-right u-rotate-180"></i>
-      </button>
-      <button class="hero-banner__carousel-arrow js-banner-next">
-        <i class="icon-academy-right"></i>
-      </button>
+
+    <div class="hero-banner__main-container">
+      <div
+        class="swiper hero-banner__swiper"
+        data-speed="${properties.autoplaySpeed || 5000}"
+        data-initial-slide="${bannerModel.editFocus}"
+       >
+        <div class="swiper-wrapper">
+          <sly data-sly-list.slide="${bannerModel.sortedSlides}">
+            <sly data-sly-call="${tpl.slide @ namePrefix=slide.namePrefix}" />
+          </sly>
+        </div>
+      </div>
+
+      <div class="hero-banner__carousel-nav">
+        <div class="hero-banner__pagination js-banner-pagination"></div>
+
+        <div class="hero-banner__navigation-buttons">
+          <button class="hero-banner__carousel-arrow js-banner-prev">
+            <i class="icon-academy-right u-rotate-180"></i>
+          </button>
+          <button class="hero-banner__carousel-arrow js-banner-next">
+            <i class="icon-academy-right"></i>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
+</div>
+
+<div data-sly-use.model="com.adobe.aem.guides.wknd.core.models.CourseSliderModel" 
+     class="course-slider">
+    
+    <h2>Upcoming Courses</h2>
+
+    <p data-sly-test="${!model.courses}">No courses available at this time.</p>
+
+    <div class="slider-container" data-sly-list.course="${model.courses}">
+        <div class="course-card">
+            <div class="course-image">
+                <img src="${course.image}" alt="${course.title}" />
+            </div>
+            <div class="course-details">
+                <h3>${course.title}</h3>
+                <p>Starts on: ${course.startDate}</p>
+                <a href="${course.link}" class="btn">View Course</a>
+            </div>
+        </div>
+    </div>
 </div>

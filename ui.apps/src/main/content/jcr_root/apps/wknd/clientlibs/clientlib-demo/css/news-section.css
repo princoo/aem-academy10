@@ -1,0 +1,55 @@
+.news-wrapper {
+  margin: 0 auto;
+  padding: 0px 100px;
+}
+.news-content {
+  padding: 40px 0px;
+  text-align: justify;
+}
+
+@media (max-width: 800px) {
+  .news-wrapper {
+    padding: 0px 16px;
+  }
+}
+
+/* .news-wrapper.theme-light {
+    background-color: #ffffff;
+}
+
+.news-wrapper.theme-dark {
+    background-color: var(--theme-primary);
+}
+
+.news-wrapper.theme-dark .news__header,
+.news-wrapper.theme-dark .news__description {
+    color: #ffffff;
+}
+
+.news-wrapper.theme-dark .cmp-atomic-title__text,
+.news-wrapper.theme-dark .cmp-atomic-text{
+    color: #ffffff !important;
+}
+.news-wrapper.theme-dark .line {
+    background-color: #ffffff; 
+}
+.theme-dark .course-slider .swiper-wrapper .swiper-slide .card .card-content .card-date,
+.theme-dark .course-slider .swiper-wrapper .swiper-slide .card .card-content .card-tags .tag,
+.theme-dark .course-slider .swiper-wrapper .swiper-slide .card .card-content .card-title,
+.theme-dark .course-slider .swiper-wrapper .swiper-slide .card .card-content .card-description
+
+{
+    color: #ffffff !important; 
+}
+.theme-dark .course-card__title,
+.theme-dark .course-card__instructor,
+.theme-dark .course-card__description {
+    color: #ffffff;
+}
+.theme-dark .course-card__meta {
+    color: #cccccc;
+}
+
+.theme-dark .course-card__link {
+    color: #ffea00;
+} */

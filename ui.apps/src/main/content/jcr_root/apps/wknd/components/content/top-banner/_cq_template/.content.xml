@@ -13,7 +13,14 @@
     hideSlide3="true"
     hideSlide4="true"
     hideSlide5="true"
-    hideSlide6="true">
+    hideSlide6="true"
+    slide1Order="1"
+    slide2Order="2"
+    slide3Order="3"
+    slide4Order="4"
+    slide5Order="5"
+    slide6Order="6"
+    >
 
     <slide1_pretitle jcr:primaryType="nt:unstructured" sling:resourceType="wknd/components/atomics/title" placeholder="Edit Pretitle 1" titleSize="title-md" titleColor="text-primary" />
     <slide1_title jcr:primaryType="nt:unstructured" sling:resourceType="wknd/components/atomics/title" placeholder="Edit Main Title 1" titleSize="title-xl" titleColor="text-primary" />
@@ -56,5 +63,6 @@
     <slide6_ctaPrimary jcr:primaryType="nt:unstructured" sling:resourceType="wknd/components/atomics/button" placeholder="Configure Button" type="primary" iconType="icon-academy-arrow_forward" buttonWidth="btn--width-standard" />
     <slide6_ctaSecondary jcr:primaryType="nt:unstructured" sling:resourceType="wknd/components/atomics/button" placeholder="Configure Button" type="secondary" iconType="icon-academy-arrow_output" buttonWidth="btn--width-standard" />
     <slide6_heroImage jcr:primaryType="nt:unstructured" sling:resourceType="wknd/components/atomics/image" borderRadius="cmp-atomic-image--rounded" aspectRatio="cmp-atomic-image--ratio-16-9" lazyLoading="{Boolean}false" isDecorative="{Boolean}false" altValueFromDAM="{Boolean}true" titleValueFromDAM="{Boolean}true" displayPopupTitle="{Boolean}false" />
+
 
 </jcr:root>

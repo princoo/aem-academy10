@@ -1,34 +1,3 @@
-/* .teaser-grid {
-  display: flex;
-  gap: 30px;
-  padding: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
-
-  .teaser-item {
-    flex: 1;
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 12px;
-    overflow-wrap: break-word;
-    word-break: break-word;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-
-    &__content {
-      padding: 20px;
-
-      h3 {
-        margin: 0 0 10px 0;
-        font-family: sans-serif;
-      }
-    }
-  }
-
-  @media (max-width: 767px) {
-    flex-direction: column;
-  }
-} */
-
 .teaser-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -61,7 +30,6 @@
         flex-grow: 1;
     }
 
-    /* Styling the slots for our Atoms */
     &__pretitle {
         text-transform: uppercase;
         letter-spacing: 0.05em;

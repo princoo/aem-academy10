@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:oak="http://jackrabbit.apache.org/oak/ns/1.0"
+    xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    xmlns:cq="http://www.day.com/jcr/cq/1.0"
+    jcr:primaryType="oak:QueryIndexDefinition"
+    async="[async,nrt]"
+    compatVersion="{Long}2"
+    type="lucene"
+    evaluatePathRestrictions="{Boolean}true"
+    includedPaths="[/content/wknd]"
+    queryPaths="[/content/wknd]"
+    tags="[courseSlider]">
+    <indexRules jcr:primaryType="nt:unstructured">
+        <cq:Page jcr:primaryType="nt:unstructured">
+            <properties jcr:primaryType="nt:unstructured">
+                <slingResourceType
+                    jcr:primaryType="nt:unstructured"
+                    name="jcr:content/sling:resourceType"
+                    propertyIndex="{Boolean}true"
+                    value="wknd/components/structure/course-page" />
+                <startDate
+                    jcr:primaryType="nt:unstructured"
+                    name="jcr:content/start-date/date"
+                    propertyIndex="{Boolean}true"
+                    ordered="{Boolean}true"
+                    type="Date" />
+                <courseTags
+                    jcr:primaryType="nt:unstructured"
+                    name="jcr:content/course-tags/cq:tags"
+                    propertyIndex="{Boolean}true" />
+            </properties>
+        </cq:Page>
+    </indexRules>
+</jcr:root>

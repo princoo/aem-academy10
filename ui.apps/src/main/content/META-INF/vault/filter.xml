@@ -4,4 +4,5 @@
     <filter root="/apps/wknd/components"/>
     <filter root="/apps/wknd/i18n"/>
     <filter root="/apps/wknd/templates"/>
+    <filter root="/oak:index/wknd.courses-1-custom-1"/>
 </workspaceFilter>

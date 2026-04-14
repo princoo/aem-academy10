@@ -5,7 +5,7 @@ globalThis.WKND.SliderUtils = globalThis.WKND.SliderUtils || {};
 function getSwiperInstance(editable) {
     
     if (!editable?.dom) {
-        console.warn("AEM did not provide a DOM reference for this componentf");
+        console.warn("aem did not provide a dom reference for this componentf");
         return null;
     }
 

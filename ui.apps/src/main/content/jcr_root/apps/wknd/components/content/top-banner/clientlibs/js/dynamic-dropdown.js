@@ -1,37 +1,43 @@
-(function($, Coral) {
+(function ($, document) {
     "use strict";
 
-    $(document).on("dialog-ready", function() {
-        
-        var $numberField = $(".cq-dialog-slider-count");
-        var $selectField = $(".cq-dialog-slider-select");
+    $(document).on("dialog-ready", function () {
+        const $select = $(".cq-dialog-banner-active-select");
+        if (!$select.length) return;
 
-        if ($numberField.length === 0 || $selectField.length === 0) {
-            return;
-        }
+        function syncDropdown() {
+            const selectElement = $select.get(0);
+            let activeSlides = [];
 
-        var selectElement = $selectField[0];
+            for (let i = 1; i <= 6; i++) {
+                const isHidden = $(`.cq-dialog-banner-hide-checkbox[name="./hideSlide${i}"]`).find('input[type="checkbox"]').is(':checked');
+                const orderValue = Number.parseInt($(`.cq-dialog-banner-order-field[name="./slide${i}Order"]`).val()) || i;
 
-        function updateDropdown(count) {
-            selectElement.items.clear();
-
-            for (var i = 1; i <= count; i++) {
-                var item = new Coral.Select.Item();
-                item.content.textContent = "Slider " + i;
-                item.value = i;
-                selectElement.items.add(item);
+                if (!isHidden) {
+                    activeSlides.push({
+                        label: `Slide ${i}`,
+                        order: orderValue
+                    });
+                }
             }
+
+            activeSlides.sort((a, b) => a.order - b.order);
+
+            selectElement.items.clear(); 
+
+            activeSlides.forEach((slide, visualIndex) => {
+                selectElement.items.add({
+                    content: { innerHTML: `Pos ${visualIndex + 1}: ${slide.label}` },
+                    value: visualIndex.toString()
+                });
+            });
         }
 
-        $numberField.on("change", function() {
-            var count = parseInt($(this).val(), 10) || 0;
-            updateDropdown(count);
+        $(document).on("change", ".cq-dialog-banner-hide-checkbox, .cq-dialog-banner-order-field", function() {
+            syncDropdown();
         });
 
-        var initialCount = parseInt($numberField.val(), 10) || 0;
-        if (initialCount > 0) {
-            updateDropdown(initialCount);
-        }
+        setTimeout(syncDropdown, 200);
     });
 
-})( Granite.$, Coral );
+})(Granite.$, document);

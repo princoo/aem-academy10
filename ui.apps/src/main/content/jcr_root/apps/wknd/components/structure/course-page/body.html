@@ -1,0 +1,91 @@
+<!--/* <header class="site-header">
+  <sly
+    data-sly-resource="${'header' @ resourceType='wknd/components/content/header'}"
+  ></sly>
+</header>
+<div class="course-page">
+  <div>
+    <sly
+      data-sly-resource="${'hero-image' @ resourceType='wknd/components/atomics/image'}"
+    ></sly>
+  </div>
+  <div>
+    <sly
+      data-sly-resource="${'hero-course-title' @ resourceType='wknd/components/atomics/title'}"
+    ></sly>
+  </div>
+  <div>
+    <sly
+      data-sly-resource="${'course-description' @ resourceType='wknd/components/atomics/text'}"
+    ></sly>
+  </div>
+  <div>
+    <sly
+      data-sly-resource="${'start-date' @ resourceType='wknd/components/content/date-picker'}"
+    ></sly>
+  </div>
+  <div class="card-tags">
+    <sly
+      data-sly-resource="${'course-tags' @ resourceType='wknd/components/content/tag-picker'}"
+    ></sly>
+  </div>
+  <sly
+    data-sly-resource="${'main-course-pars' @ resourceType='core/wcm/components/container/v1/container'}"
+  ></sly>
+</div>
+<div class="site-footer">
+  <sly
+    data-sly-resource="${'footer' @ resourceType='wknd/components/content/footer'}"
+  ></sly>
+</div> */-->
+
+<header class="site-header">
+  <sly
+    data-sly-resource="${'header' @ resourceType='wknd/components/content/header'}"
+  ></sly>
+</header>
+<div class="course-page-wrapper">
+  <div class="course">
+    <div class="course__content">
+      <div class="course__title">
+        <sly
+          data-sly-resource="${'hero-course-title' @ resourceType='wknd/components/atomics/title'}"
+        ></sly>
+      </div>
+
+      <div class="course__description">
+        <sly
+          data-sly-resource="${'hero-course-description' @ resourceType='wknd/components/atomics/text'}"
+        ></sly>
+      </div>
+      <div class="course__tags">
+        <sly
+          data-sly-resource="${'course-tags' @ resourceType='wknd/components/content/tag-picker'}"
+        ></sly>
+      </div>
+      <div class="course__start-date">
+        <span class="course__start-date__label">Start Date:</span>
+        <sly
+          data-sly-resource="${'start-date' @ resourceType='wknd/components/content/date-picker'}"
+        ></sly>
+      </div>
+    </div>
+
+    <div class="course__visual">
+      <sly
+        data-sly-resource="${'hero-image' @ resourceType='wknd/components/atomics/image'}"
+      ></sly>
+    </div>
+  </div>
+  <div class="course__main-content">
+    <sly
+      data-sly-resource="${'main-course-pars' @ resourceType='core/wcm/components/container/v1/container'}"
+    ></sly>
+  </div>
+</div>
+
+<div class="site-footer">
+  <sly
+    data-sly-resource="${'footer' @ resourceType='wknd/components/content/footer'}"
+  ></sly>
+</div>

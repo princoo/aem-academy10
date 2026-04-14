@@ -31,15 +31,27 @@
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/container">
                                         <items jcr:primaryType="nt:unstructured">
-                                            <sliderCount
+                                            <editFocus
                                                 jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
-                                                fieldLabel="Number of Sliders"
-                                                fieldDescription="Enter how many sliders you want."
-                                                name="./sliderCount"
-                                                min="1"
-                                                max="6"
-                                                granite:class="cq-dialog-slider-count" />
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Active Slide in Edit Mode"
+                                                name="./editFocus"
+                                                granite:class="cq-dialog-banner-active-select">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <s1 jcr:primaryType="nt:unstructured"
+                                                        text="Slide 1" value="0" />
+                                                    <s2 jcr:primaryType="nt:unstructured"
+                                                        text="Slide 2" value="1" />
+                                                    <s3 jcr:primaryType="nt:unstructured"
+                                                        text="Slide 3" value="2" />
+                                                    <s4 jcr:primaryType="nt:unstructured"
+                                                        text="Slide 4" value="3" />
+                                                    <s5 jcr:primaryType="nt:unstructured"
+                                                        text="Slide 5" value="4" />
+                                                    <s6 jcr:primaryType="nt:unstructured"
+                                                        text="Slide 6" value="5" />
+                                                </items>
+                                            </editFocus>
                                             <autoplaySpeed
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
@@ -48,81 +60,153 @@
                                                 name="./autoplaySpeed"
                                                 min="1000"
                                                 defaultValue="5000" />
-                                            <!-- <activeSlider
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                                fieldLabel="Select Active Slider"
-                                                fieldDescription="Choose which slider to configure."
-                                                name="./activeSlider"
-                                                granite:class="cq-dialog-slider-select">
-                                                <items jcr:primaryType="nt:unstructured" />
-                                            </activeSlider> -->
-                                            <slideVisibility
-                                                jcr:primaryType="nt:unstructured"
-                                                jcr:title="Slide Visibility &amp; Order (Publish Mode)"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
-                                                <items jcr:primaryType="nt:unstructured">
-
-                                                    <hideSlide1
-                                                        jcr:primaryType="nt:unstructured"
-                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                        name="./hideSlide1"
-                                                        text="Hide Slide 1"
-                                                        value="true"
-                                                        uncheckedValue="false" />
-
-
-                                                    <hideSlide2
-                                                        jcr:primaryType="nt:unstructured"
-                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                        name="./hideSlide2"
-                                                        text="Hide Slide 2"
-                                                        value="true"
-                                                        uncheckedValue="false" />
-
-
-                                                    <hideSlide3
-                                                        jcr:primaryType="nt:unstructured"
-                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                        name="./hideSlide3"
-                                                        text="Hide Slide 3"
-                                                        value="true"
-                                                        uncheckedValue="false" />
-
-
-                                                    <hideSlide4
-                                                        jcr:primaryType="nt:unstructured"
-                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                        name="./hideSlide4"
-                                                        text="Hide Slide 4"
-                                                        value="true"
-                                                        uncheckedValue="false" />
-
-
-                                                    <hideSlide5
-                                                        jcr:primaryType="nt:unstructured"
-                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                        name="./hideSlide5"
-                                                        text="Hide Slide 5"
-                                                        value="true"
-                                                        uncheckedValue="false" />
-
-                                                    <hideSlide6
-                                                        jcr:primaryType="nt:unstructured"
-                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                        name="./hideSlide6"
-                                                        text="Hide Slide 6"
-                                                        value="true"
-                                                        uncheckedValue="false" />
-
-                                                </items>
-                                            </slideVisibility>
                                         </items>
                                     </column>
                                 </items>
                             </columns>
                         </items>
                     </slidesTab>
+                    <visibility
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Visibility &amp; Order"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+
+                                            <slide1Order
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                fieldLabel="Slide 1 Position"
+                                                fieldDescription="Set position for Slide 1 (1-6)"
+                                                name="./slide1Order"
+                                                granite:class="cq-dialog-banner-order-field"
+                                                min="1"
+                                                max="6"
+                                                defaultValue="1" />
+                                            <hideSlide1
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                name="./hideSlide1"
+                                                text="Hide Slide 1"
+                                                value="true"
+                                                uncheckedValue="false"
+                                                granite:class="cq-dialog-banner-hide-checkbox"
+                                            />
+
+                                            <slide2Order
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                fieldDescription="Set position for Slide 2 (1-6)"
+                                                fieldLabel="Slide 2 Position"
+                                                granite:class="cq-dialog-banner-order-field"
+                                                name="./slide2Order"
+                                                min="1"
+                                                max="6"
+                                                defaultValue="2" />
+                                            <hideSlide2
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                name="./hideSlide2"
+                                                text="Hide Slide 2"
+                                                value="true"
+                                                uncheckedValue="false"
+                                                granite:class="cq-dialog-banner-hide-checkbox"
+                                            />
+
+                                            <slide3Order
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                fieldDescription="Set position for Slide 3 (1-6)"
+                                                fieldLabel="Slide 3 Position"
+                                                granite:class="cq-dialog-banner-order-field"
+                                                name="./slide3Order"
+                                                min="1"
+                                                max="6"
+                                                defaultValue="3" />
+                                            <hideSlide3
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                name="./hideSlide3"
+                                                text="Hide Slide 3"
+                                                value="true"
+                                                uncheckedValue="false"
+                                                granite:class="cq-dialog-banner-hide-checkbox"
+                                            />
+                                            <slide4Order
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                fieldDescription="Set position for Slide 4 (1-6)"
+                                                fieldLabel="Slide 4 Position"
+                                                granite:class="cq-dialog-banner-order-field"
+                                                name="./slide4Order"
+                                                min="1"
+                                                max="6"
+                                                defaultValue="4" />
+                                            <hideSlide4
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                name="./hideSlide4"
+                                                text="Hide Slide 4"
+                                                value="true"
+                                                uncheckedValue="false"
+                                                granite:class="cq-dialog-banner-hide-checkbox"
+                                            />
+
+                                            <slide5Order
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                fieldDescription="Set position for Slide 5 (1-6)"
+                                                fieldLabel="Slide 5 Position"
+                                                granite:class="cq-dialog-banner-order-field"
+                                                name="./slide5Order"
+                                                min="1"
+                                                max="6"
+                                                defaultValue="5" />
+                                            <hideSlide5
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                name="./hideSlide5"
+                                                text="Hide Slide 5"
+                                                value="true"
+                                                uncheckedValue="false"
+                                                granite:class="cq-dialog-banner-hide-checkbox"
+                                            />
+
+                                            <slide6Order
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                fieldDescription="Set position for Slide 6 (1-6)"
+                                                fieldLabel="Slide 6 Position"
+                                                granite:class="cq-dialog-banner-order-field"
+                                                name="./slide6Order"
+                                                min="1"
+                                                max="6"
+                                                defaultValue="6" />
+                                            <hideSlide6
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                name="./hideSlide6"
+                                                text="Hide Slide 6"
+                                                value="true"
+                                                uncheckedValue="false"
+                                                granite:class="cq-dialog-banner-hide-checkbox"
+                                            />
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </visibility>
+
                 </items>
             </tabs>
         </items>
