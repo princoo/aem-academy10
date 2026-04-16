@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
         jcr:primaryType="nt:unstructured"
@@ -9,41 +11,77 @@
             <clientlibs
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="granite/ui/components/coral/foundation/includeclientlibs"
-                categories="[wknd.tools.importer]"/>
+                categories="[wknd.tools.importer]" />
         </head>
         <title
             jcr:primaryType="nt:unstructured"
             sling:resourceType="granite/ui/components/shell/title"
-            jcr:title="Course Importer Dashboard"/>
+            jcr:title="Course Importer Dashboard" />
         <content jcr:primaryType="nt:unstructured"
             sling:resourceType="granite/ui/components/coral/foundation/container">
+            <layout jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/layouts/fixedcolumns"
+                margin="{Boolean}true" />
             <items jcr:primaryType="nt:unstructured">
-                <well
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="granite/ui/components/coral/foundation/well">
+                <column jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/container">
                     <items jcr:primaryType="nt:unstructured">
-                        <csvPath
+
+                        <importerWell
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                            fieldLabel="Select Course CSV File"
-                            name="csvPath"
-                            required="{Boolean}true"
-                            rootPath="/content/dam"/>
-                        <parentPath
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                            fieldLabel="Destination Folder"
-                            name="parentPath"
-                            required="{Boolean}true"
-                            rootPath="/content/wknd"/>
-                        <importButton
-                            jcr:primaryType="nt:unstructured"
-                            granite:id="wknd-import-btn"
-                            sling:resourceType="granite/ui/components/coral/foundation/button"
-                            text="Start Import"
-                            variant="primary"/>
+                            sling:resourceType="granite/ui/components/coral/foundation/well"
+                            granite:class="wknd-importer-box">
+                            <items jcr:primaryType="nt:unstructured">
+
+                                <formContainer
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                    <layout jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/layouts/form"
+                                        aligned="{Boolean}false" />
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <csvPath
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                            fieldLabel="Course CSV File"
+                                            name="csvPath"
+                                            required="{Boolean}true"
+                                            rootPath="/content/dam" />
+                                        <parentPath
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                            fieldLabel="Destination Folder"
+                                            name="parentPath"
+                                            required="{Boolean}true"
+                                            rootPath="/content/wknd" />
+
+                                    </items>
+                                </formContainer>
+
+                                <buttonWrapper
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    granite:class="wknd-btn-wrapper"
+                                >
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <importButton
+                                            jcr:primaryType="nt:unstructured"
+                                            granite:id="wknd-import-btn"
+                                            sling:resourceType="granite/ui/components/coral/foundation/button"
+                                            text="Start Import Process"
+                                            variant="primary" />
+                                    </items>
+                                </buttonWrapper>
+                                <progressWrapper
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    granite:id="wknd-progress-wrapper"
+                                    style="display:none; margin-top: 20px;">
+                                </progressWrapper>
+                            </items>
+                        </importerWell>
                     </items>
-                </well>
+                </column>
             </items>
         </content>
     </jcr:content>
