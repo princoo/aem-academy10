@@ -30,11 +30,13 @@ public class CourseImporterJob implements Runnable {
 
     private String csvPath;
     private String parentPath;
+    private boolean enabled;
 
     @Activate
     protected void activate(CourseImporterConfig config) {
         this.csvPath = config.csv_path();
         this.parentPath = config.parent_path();
+        this.enabled = config.service_enabled();
 
         ScheduleOptions options = scheduler.EXPR(config.scheduler_expression());
         options.name(JOB_NAME);
@@ -49,6 +51,11 @@ public class CourseImporterJob implements Runnable {
 
     @Override
     public void run() {
+        if (!enabled) {
+            logger.info(
+                    "COURSE IMPORTER: Scheduler triggered the job, but it is currently DISABLED. Skipping execution.");
+            return;
+        }
         logger.info("COURSE IMPORTER: Scheduler triggered the job");
         String status = courseImporterService.importCourses(csvPath, parentPath);
         logger.info("COURSE IMPORTER: Scheduled job finished. Status: {}", status);

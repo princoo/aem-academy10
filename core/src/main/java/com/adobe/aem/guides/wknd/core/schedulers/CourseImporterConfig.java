@@ -6,6 +6,9 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 @ObjectClassDefinition(name = "WKND Course Importer Configuration", description = "Configures the scheduled job to import courses from a CSV file.")
 public @interface CourseImporterConfig {
 
+    @AttributeDefinition(name = "Enable Job", description = "Check to enable the scheduled import. If unchecked, the job will not run.")
+    boolean service_enabled() default true;
+
     @AttributeDefinition(name = "Cron Expression", description = "Cron expression for the scheduler. Default is every day at 2 AM (0 0 2 * * ?)")
     String scheduler_expression() default "0 0 2 * * ?";
 

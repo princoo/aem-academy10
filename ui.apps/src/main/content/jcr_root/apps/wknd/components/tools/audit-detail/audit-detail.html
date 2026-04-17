@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WKND | Process Detail</title>
+    <sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html"
+         data-sly-call="${clientLib.all @ categories='wknd.tools.audit.detail'}" />
+</head>
+<body class="coral--light">
+    <coral-shell>
+        <coral-shell-header>
+            <coral-shell-header-home>
+                <a class="coral3-Shell-homeAnchor" href="/apps/wknd/components/tools/audit-logs.html">
+                    <coral-icon icon="chevronLeft" size="S"></coral-icon> Back to Dashboard
+                </a>
+            </coral-shell-header-home>
+        </coral-shell-header>
+
+        <coral-shell-content>
+            <div style="padding: 20px; max-width: 1200px; margin: 0 auto;">
+                
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 20px;">
+                    <coral-card class="stat-card">
+                        <coral-card-content>
+                            <coral-card-property icon="add" id="stat-created">0</coral-card-property>
+                            <coral-card-title>Created</coral-card-title>
+                        </coral-card-content>
+                    </coral-card>
+                    <coral-card class="stat-card">
+                        <coral-card-content>
+                            <coral-card-property icon="refresh" id="stat-updated">0</coral-card-property>
+                            <coral-card-title>Updated</coral-card-title>
+                        </coral-card-content>
+                    </coral-card>
+                    <coral-card class="stat-card">
+                        <coral-card-content>
+                            <coral-card-property icon="Separator" id="stat-skipped">0</coral-card-property>
+                            <coral-card-title>Skipped</coral-card-title>
+                        </coral-card-content>
+                    </coral-card>
+                    <coral-card class="stat-card">
+                        <coral-card-content>
+                            <coral-card-property icon="alert" id="stat-errors" style="color:red;">0</coral-card-property>
+                            <coral-card-title>Errors</coral-card-title>
+                        </coral-card-content>
+                    </coral-card>
+                </div>
+
+                <div class="console-container">
+                    <div id="process-info-header" style="padding: 10px; background: #333; color: #fff; display: flex; justify-content: space-between;">
+                        <span id="display-path">Loading process...</span>
+                        <span id="display-status">IDLE</span>
+                    </div>
+                    <div class="coral-Well log-well" id="log-scroll-container">
+                        <div id="wknd-detail-console"></div>
+                    </div>
+                </div>
+
+            </div>
+        </coral-shell-content>
+    </coral-shell>
+</body>
+</html>

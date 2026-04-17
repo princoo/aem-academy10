@@ -8,5 +8,11 @@
         jcr:title="Course Importer"
         jcr:description="Import courses from DAM CSV files."
         icon="import"
-        href="/apps/wknd/components/tools/importer-console.html"/>
+        href="/apps/wknd/components/tools/importer-console.html" />
+    <audit-logs
+        jcr:primaryType="nt:unstructured"
+        jcr:title="Import Audit Logs"
+        jcr:description="View historical reports and real-time logs of course imports."
+        icon="history"
+        href="/apps/wknd/components/tools/audit-logs.html" />
 </jcr:root>

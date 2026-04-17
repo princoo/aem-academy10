@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <title>WKND | Import Audit Logs</title>
+    <sly
+      data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html"
+      data-sly-call="${clientLib.all @ categories='wknd.tools.audit'}"
+    />
+  </head>
+  <body class="coral--light">
+    <coral-shell>
+      <coral-shell-header>
+        <coral-shell-header-home>
+          <a class="coral3-Shell-homeAnchor" href="#">Import Audit Dashboard</a>
+        </coral-shell-header-home>
+        <coral-shell-header-actions>
+          <button
+            is="coral-button"
+            variant="minimal"
+            icon="refresh"
+            id="manual-refresh-btn"
+          >
+            Refresh
+          </button>
+        </coral-shell-header-actions>
+      </coral-shell-header>
+
+      <coral-shell-content>
+        <div style="padding: 40px">
+          <h2 class="coral-Heading coral-Heading--2">Import History</h2>
+
+          <table is="coral-table" id="audit-master-table" selectable>
+            <thead is="coral-table-head">
+              <tr is="coral-table-row">
+                <th is="coral-table-headercell">Start Time</th>
+                <th is="coral-table-headercell">Owner</th>
+                <th is="coral-table-headercell">Total</th>
+                <th is="coral-table-headercell">Duration</th>
+                <th is="coral-table-headercell">Created</th>
+                <th is="coral-table-headercell">Updated</th>
+                <th is="coral-table-headercell">Skipped</th>
+                <th is="coral-table-headercell">Errors</th>
+                <th is="coral-table-headercell">Status</th>
+              </tr>
+            </thead>
+            <tbody is="coral-table-body" id="audit-table-body"></tbody>
+          </table>
+        </div>
+      </coral-shell-content>
+    </coral-shell>
+  </body>
+</html>

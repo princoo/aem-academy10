@@ -3,19 +3,23 @@ package com.adobe.aem.guides.wknd.core.services.impl;
 import com.adobe.aem.guides.wknd.core.models.CourseModel;
 import com.adobe.aem.guides.wknd.core.services.CourseImporterService;
 import com.adobe.aem.guides.wknd.core.services.ImportLogEntry;
+import com.adobe.aem.guides.wknd.core.services.PropertyUpdateResult;
 import com.adobe.aem.guides.wknd.core.util.JcrUtils;
 import com.day.cq.dam.api.Asset;
 import com.day.cq.dam.api.Rendition;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.api.WCMException;
+import com.google.gson.Gson;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
+import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.commons.threads.ThreadPool;
 import org.apache.sling.commons.threads.ThreadPoolManager;
 import org.osgi.service.component.annotations.Activate;
@@ -28,6 +32,7 @@ import org.slf4j.LoggerFactory;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -61,26 +66,39 @@ public class CourseImporterServiceImpl implements CourseImporterService {
 
     @Override
     public String importCourses(String csvPath, String parentPath) {
+        long startTime = System.currentTimeMillis();
+        String REPORT_PATH = "/var/wknd/importer/reports/report_" + startTime;
         if (myThreadPool == null) {
             return "Error: Thread pool 'wknd-importer-pool' not ready. Check Web Console.";
         }
 
         myThreadPool.execute(() -> {
-            processCourseImportTask(csvPath, parentPath);
+            Map<String, Object> authInfo = Collections.singletonMap(ResourceResolverFactory.SUBSERVICE,
+                    SUBSERVICE_NAME);
+            try (ResourceResolver serviceResolver = resourceResolverFactory.getServiceResourceResolver(authInfo)) {
+                processCourseImportTask(serviceResolver, csvPath, parentPath, REPORT_PATH, startTime,"SYSTEM_SCHEDULER");
+
+            } catch (LoginException e) {
+                logger.error("Background task failed to login", e);
+            }
         });
-        return "Import process started in the background. Monitoring progress via JCR.";
+        return REPORT_PATH;
     }
 
-    private void processCourseImportTask(String csvPath, String parentPath) {
+    @Override
+    public void processCourseImportTask(ResourceResolver resolver, String csvPath, String parentPath, String reportPath, long startTime, String initiatingUser) {
         List<ImportLogEntry> executionLogs = new ArrayList<>();
         int successCount = 0;
+        int createdCount = 0;
+        int updatedCount = 0;
         int errorCount = 0;
         int skippedCount = 0;
         int processedCount = 0;
-
-        Map<String, Object> authInfo = Collections.singletonMap(ResourceResolverFactory.SUBSERVICE, SUBSERVICE_NAME);
-
-        try (ResourceResolver resolver = resourceResolverFactory.getServiceResourceResolver(authInfo)) {
+        String status;
+        String detail;
+        ImportLogEntry currentEntry = null;
+        
+        try{
 
             InputStream is = getAssetInputStream(resolver, csvPath);
             if (is == null) {
@@ -92,60 +110,101 @@ public class CourseImporterServiceImpl implements CourseImporterService {
             List<String> lines = IOUtils.readLines(is, StandardCharsets.UTF_8);
             int totalRows = Math.max(0, lines.size() - 1);
 
-            updateProgress(resolver, parentPath, totalRows, 0, "RUNNING");
+            Resource reportResource = ResourceUtil.getOrCreateResource(resolver, reportPath,
+                    Collections.singletonMap("jcr:primaryType", "nt:unstructured"), "sling:Folder", true);
+
+            ModifiableValueMap reportMvm = reportResource.adaptTo(ModifiableValueMap.class);
+            reportMvm.put("startTime", startTime);
+            reportMvm.put("status", "RUNNING");
+            reportMvm.put("total", totalRows);
+            reportMvm.put("processed", 0L);
+            reportMvm.put("percent", 0);
+            reportMvm.put("owner", initiatingUser);
+            reportMvm.remove("logData");
             resolver.commit();
 
-            boolean isHeader = true;
-            for (String line : lines) {
-                if (isHeader) {
-                    isHeader = false;
-                    continue;
-                }
+            try {
 
-                CourseModel course = parseCsvLine(line);
-                try {
+                boolean isHeader = true;
+                for (String line : lines) {
+                    if (isHeader) {
+                        isHeader = false;
+                        continue;
+                    }
+
+                    CourseModel course = parseCsvLine(line);
                     if (course == null) {
                         logger.error("COURSE IMPORTER: Skipped line due to incomplete properties: {}", line);
                         skippedCount++;
                         continue;
                     }
+                    String courseId = course.getId();
 
-                    String pagePath = parentPath + "/" + course.getId();
-                    boolean isNewPage = (resolver.getResource(pagePath) == null);
-                    Page coursePage = getOrCreatePage(resolver, parentPath, course);
+                    try {
+                        String pagePath = parentPath + "/" + courseId;
+                        boolean isNewPage = (resolver.getResource(pagePath) == null);
+                        Page coursePage = getOrCreatePage(resolver, parentPath, course);
+                        PropertyUpdateResult updateResult = updateCourseContent(resolver, coursePage, course);
 
-                    boolean propertiesChanged = updateCourseContent(resolver, coursePage, course);
+                        if (isNewPage && updateResult.isChanged()) {
+                            status = "CREATED";
+                            detail = courseId + " - course created.";
+                            createdCount++;
+                            resolver.commit();
+                        } else if (updateResult.isChanged() && !isNewPage) {
+                            status = "UPDATED";
+                            detail = courseId + " - existing page found; properties updated: "
+                                    + String.join(", ", updateResult.getUpdatedProperties());
+                            updatedCount++;
+                            resolver.commit();
+                        } else {
+                            status = "SKIPPED";
+                            detail = courseId + " - content matches; no update made.";
+                            skippedCount++;
+                            logger.info("COURSE IMPORTER: No changes for {}, skipping write.", courseId);
+                        }
+                        currentEntry = new ImportLogEntry(courseId, status, detail, pagePath);
+                        appendLogToVault(reportMvm, currentEntry);
 
-                    if (isNewPage || propertiesChanged) {
-                        resolver.commit();
-                        successCount++;
-                    } else {
-                        skippedCount++;
-                        logger.info("COURSE IMPORTER: No changes for {}, skipping write.",
-                                course.getId());
+                        Thread.sleep(2000);
+                    } catch (Exception e) {
+                        logger.error("COURSE IMPORTER: Failed to process line: {}", line, e);
+                        executionLogs.add(new ImportLogEntry(courseId, "ERROR", e.getMessage(), parentPath));
+                        errorCount++;
+                    } finally {
+                        processedCount++;
+                        reportMvm.put("processed", processedCount);
+                        reportMvm.put("percent", (int) (((double) processedCount / totalRows) * 100));
+
+                        reportMvm.put("createdCount", createdCount);
+                        reportMvm.put("updatedCount", updatedCount);
+                        reportMvm.put("skippedCount", skippedCount);
+                        reportMvm.put("errorCount", errorCount);
+                        if (processedCount % 5 == 0) {
+                            resolver.commit();
+                        }
+
                     }
-                    executionLogs
-                            .add(new ImportLogEntry(course.getId(), "CREATED", "Page created successfully", pagePath));
-                    Thread.sleep(500); // using this for testing the progress bar
-                } catch (Exception e) {
-                    logger.error("COURSE IMPORTER: Failed to process line: {}", line, e);
-                    executionLogs.add(new ImportLogEntry(course.getId(), "ERROR", e.getMessage(), parentPath));
-                    errorCount++;
-                } finally {
-                    processedCount++;
-                    updateProgress(resolver, parentPath, totalRows, processedCount, "RUNNING");
-                    resolver.commit();
                 }
-            }
 
-            updateProgress(resolver, parentPath, totalRows, processedCount, "COMPLETED");
-            resolver.commit();
-            logger.info("COURSE IMPORTER: Background task finished. Success: {} | Skipped: {} | Errors: {}",
-                    successCount, skippedCount,
-                    errorCount);
+                resolver.commit();
+                logger.info(
+                        "COURSE IMPORTER: Backgrounddd task finished. Created: {} | Updated: {} | Skipped: {} | Errors: {}",
+                        createdCount, updatedCount, skippedCount, errorCount);
+            } catch (Exception e) {
+                logger.error("COURSE IMPORTER: Critical error in background thread", e);
+            } finally {
+                long endTime = System.currentTimeMillis();
+                reportMvm.put("endTime", endTime);
+                reportMvm.put("status", "COMPLETED");
+                reportMvm.put("percent", 100);
+                resolver.commit();
+            }
 
         } catch (Exception e) {
             logger.error("COURSE IMPORTER: Critical error in background thread", e);
+        } finally{
+            logger.info("Executing import logic using user: {}", resolver.getUserID());
         }
     }
 
@@ -195,50 +254,38 @@ public class CourseImporterServiceImpl implements CourseImporterService {
     }
 
     // update of atomic components
-    private boolean updateCourseContent(ResourceResolver resolver, Page page, CourseModel course) {
+    private PropertyUpdateResult updateCourseContent(ResourceResolver resolver, Page page, CourseModel course) {
         Resource contentResource = page.getContentResource();
+        List<String> changedNames = new ArrayList<>();
         if (contentResource == null)
-            return false;
+            return new PropertyUpdateResult(false, changedNames);
 
-        boolean changed = false;
-
-        changed |= JcrUtils.setAtomicProperty(resolver, contentResource, "hero-image", "fileReference",
-                course.getThumbnail(), "wknd/components/atomics/image");
-
-        changed |= JcrUtils.setAtomicProperty(resolver, contentResource, "hero-course-title", "jcr:title",
-                course.getTitle(), "wknd/components/atomics/title");
-
-        changed |= JcrUtils.setAtomicProperty(resolver, contentResource, "hero-course-description", "text",
-                course.getDescription(), "wknd/components/atomics/text");
-
-        changed |= JcrUtils.setAtomicProperty(resolver, contentResource, "course-tags", "cq:tags",
-                course.getTags(), "wknd/components/content/tag-picker");
-
-        changed |= JcrUtils.setAtomicProperty(resolver, contentResource, "start-date", "date",
-                course.getStartDate(), "wknd/components/content/date-picker");
-
-        return changed;
-    }
-
-    // write progress in jcr:content
-    private void updateProgress(ResourceResolver resolver, String path, int total, int processed, String status) {
-        try {
-            Resource parent = resolver.getResource(path);
-            if (parent == null)
-                return;
-
-            Resource jcrContent = getOrCreateJcrContent(resolver, parent);
-
-            ModifiableValueMap mvm = jcrContent.adaptTo(ModifiableValueMap.class);
-            if (mvm != null) {
-                mvm.put("importTotal", (long) total);
-                mvm.put("importProcessed", (long) processed);
-                mvm.put("importStatus", status);
-                resolver.commit();
-            }
-        } catch (PersistenceException e) {
-            logger.error("Error saving progress to JCR", e);
+        if (JcrUtils.setAtomicProperty(resolver, contentResource, "hero-image", "fileReference",
+                course.getThumbnail().trim(), "wknd/components/atomics/image")) {
+            changedNames.add("Thumbnail Image");
         }
+
+        if (JcrUtils.setAtomicProperty(resolver, contentResource, "hero-course-title", "jcr:title",
+                course.getTitle(), "wknd/components/atomics/title")) {
+            changedNames.add("Course Title");
+        }
+
+        if (JcrUtils.setAtomicProperty(resolver, contentResource, "hero-course-description", "text",
+                course.getDescription(), "wknd/components/atomics/text")) {
+            changedNames.add("Description");
+        }
+
+        if (JcrUtils.setAtomicProperty(resolver, contentResource, "course-tags", "cq:tags",
+                course.getTags(), "wknd/components/content/tag-picker")) {
+            changedNames.add("Tags");
+        }
+
+        if (JcrUtils.setAtomicProperty(resolver, contentResource, "start-date", "date",
+                course.getStartDate(), "wknd/components/content/date-picker")) {
+            changedNames.add("Start Date");
+        }
+
+        return new PropertyUpdateResult(!changedNames.isEmpty(), changedNames);
     }
 
     private void updateStatus(ResourceResolver resolver, String path, String status) {
@@ -267,4 +314,12 @@ public class CourseImporterServiceImpl implements CourseImporterService {
         }
         return jcrContent;
     }
+
+    private void appendLogToVault(ModifiableValueMap mvm, ImportLogEntry entry) {
+        String[] currentLogs = mvm.get("logData", new String[0]);
+        String[] newLogs = Arrays.copyOf(currentLogs, currentLogs.length + 1);
+        newLogs[newLogs.length - 1] = new Gson().toJson(entry);
+        mvm.put("logData", newLogs);
+    }
+
 }
