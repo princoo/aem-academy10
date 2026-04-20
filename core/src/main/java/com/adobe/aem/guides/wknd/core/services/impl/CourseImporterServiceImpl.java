@@ -166,7 +166,7 @@ public class CourseImporterServiceImpl implements CourseImporterService {
                         currentEntry = new ImportLogEntry(courseId, status, detail, pagePath);
                         appendLogToVault(reportMvm, currentEntry);
 
-                        Thread.sleep(2000);
+                        Thread.sleep(1000);
                     } catch (Exception e) {
                         logger.error("COURSE IMPORTER: Failed to process line: {}", line, e);
                         executionLogs.add(new ImportLogEntry(courseId, "ERROR", e.getMessage(), parentPath));

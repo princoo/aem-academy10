@@ -33,8 +33,7 @@ public class ImportReportsListServlet extends SlingSafeMethodsServlet {
                 ValueMap props = report.getValueMap();
                 Map<String, Object> map = new HashMap<>();
 
-            
-                long start = props.get("startTime", 0L); //duration
+                long start = props.get("startTime", 0L); // duration
                 long end = props.get("endTime", 0L);
                 String duration = "--";
 
@@ -69,8 +68,8 @@ public class ImportReportsListServlet extends SlingSafeMethodsServlet {
             }
         }
 
-        
-        reports.sort((a, b) -> ((Long) b.get("timestamp")).compareTo((Long) a.get("timestamp"))); // am sort to get the pending ones on top
+        reports.sort((a, b) -> ((Long) b.get("timestamp")).compareTo((Long) a.get("timestamp"))); // am sort to get the
+                                                                                                  // pending ones on top
 
         response.setContentType("application/json");
         new ObjectMapper().writeValue(response.getWriter(), reports);

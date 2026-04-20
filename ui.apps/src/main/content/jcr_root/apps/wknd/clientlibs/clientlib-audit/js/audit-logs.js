@@ -20,9 +20,9 @@
 
       var row = `
     <tr is="coral-table-row" class="audit-row" data-path="${report.path}">
-    <td is="coral-table-cell">${new Date(report.timestamp).toLocaleString()}</td>
-    <td is="coral-table-cell">${report.owner}</td>
-    <td is="coral-table-cell">${report.total}</td>
+        <td is="coral-table-cell">${new Date(report.timestamp).toLocaleString()}</td>
+        <td is="coral-table-cell">${report.owner}</td>
+        <td is="coral-table-cell">${report.total}</td>
         <td is="coral-table-cell">${report.status == "RUNNING" ? "-" : report.duration}</td>
         <td is="coral-table-cell">${report.created}</td>
         <td is="coral-table-cell">${report.updated}</td>
